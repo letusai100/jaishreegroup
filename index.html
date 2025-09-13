@@ -14,6 +14,7 @@
     <link rel="canonical" href="https://www.jaisshreegroup.in/">
     <!-- Note: You should create a 32x32 favicon.ico file and place it in the root of your website -->
     <link rel="icon" href="https://placehold.co/32x32/c09a3e/FFFFFF?text=JSG" type="image/x-icon">
+    <!-- DEVELOPER NOTE: To accelerate SEO updates, submit this site's sitemap to Google Search Console and request re-indexing. -->
 
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
@@ -320,7 +321,9 @@
     <!-- Header & Navbar -->
     <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" onclick="showPage('home')"><img data-key-img="logo" src="" alt="Jai Shree Group Logo" class="h-16 w-auto"></a>
+             <a href="#" onclick="showPage('home')" data-key-img="logo" class="relative inline-block">
+                <img src="" alt="Jai Shree Group Logo" class="h-16 w-auto">
+            </a>
             <div class="hidden md:flex items-center space-x-8" id="nav-links">
                 <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
                 <a href="#" onclick="showPage('about')" class="nav-link">About Us</a>
@@ -670,7 +673,7 @@
             if (!data) return;
 
             const contentEl = document.getElementById('client-details-content');
-            const logoEl = document.querySelector(`[data-key-img="${clientKey}"]`);
+            const logoEl = document.querySelector(`img[data-key-img="${clientKey}"]`);
             if (!logoEl) return;
             const logoSrc = logoEl.src;
             
@@ -806,22 +809,21 @@
             data.forEach(item => {
                 const elements = document.querySelectorAll(`[data-key="${item.id}"]`);
                  elements.forEach(el => {
-                    if (el.innerHTML.trim() === '') { // Only update if element is empty
-                        el.innerHTML = item.content;
-                    }
+                     el.innerHTML = item.content;
                 });
                 
                 const imgElements = document.querySelectorAll(`[data-key-img="${item.id}"]`);
                 imgElements.forEach(el => {
                     if (item.type === 'image') {
-                        if (el.tagName === 'IMG') {
-                           if (!el.src.includes('placehold.co')) el.src = item.content;
-                        } else {
-                            if (!el.style.backgroundImage.includes('placehold.co')) {
-                                const currentStyle = el.style.backgroundImage || '';
-                                const gradient = currentStyle.startsWith('linear-gradient') ? currentStyle.substring(0, currentStyle.indexOf('url(')) : '';
-                                el.style.backgroundImage = `${gradient}url('${item.content}')`;
-                            }
+                        const innerImg = el.querySelector('img');
+                        if (innerImg) { // This is our new logo structure
+                             innerImg.src = item.content;
+                        } else if (el.tagName === 'IMG') { // Legacy for other images if they exist
+                           el.src = item.content;
+                        } else { // For background images
+                            const currentStyle = el.style.backgroundImage || '';
+                            const gradient = currentStyle.startsWith('linear-gradient') ? currentStyle.substring(0, currentStyle.indexOf('url(')) : '';
+                            el.style.backgroundImage = `${gradient}url('${item.content}')`;
                         }
                     }
                 });
@@ -1041,14 +1043,21 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 updates.push({ id: el.dataset.key, content: el.innerHTML, type: 'text' });
             });
+            
             document.querySelectorAll('[data-key-img]').forEach(el => {
                 let url = '';
-                if(el.tagName === 'IMG') {
+                const innerImg = el.querySelector('img');
+
+                if (innerImg) { // For elements containing an img, like the logo
+                    url = innerImg.src;
+                } else if (el.tagName === 'IMG') { // For elements that are the img itself
                     url = el.src;
-                } else if (el.style.backgroundImage) {
-                    url = el.style.backgroundImage.slice(5, -2).replace(/"/g, ""); // Clean URL string
+                } else if (el.style.backgroundImage.includes('url')) { // For background images
+                    const match = el.style.backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
+                    if (match) url = match[2];
                 }
-                if (url) {
+                
+                if (url && !url.includes('placehold.co')) {
                     updates.push({ id: el.dataset.keyImg, content: url, type: 'image' });
                 }
             });
@@ -1111,8 +1120,14 @@
             const { type, element, gallery_key, id, projectId } = _uploadContext;
 
             if (type === 'single') {
-                if (element.tagName === 'IMG') element.src = successfulUrls[0];
-                else element.style.backgroundImage = `url('${successfulUrls[0]}')`;
+                const innerImg = element.querySelector('img');
+                if (innerImg) {
+                    innerImg.src = successfulUrls[0];
+                } else if (element.tagName === 'IMG') {
+                     element.src = successfulUrls[0];
+                } else {
+                    element.style.backgroundImage = `url('${successfulUrls[0]}')`;
+                }
             } else if (type === 'addGallery') {
                  if (gallery_key === 'csr') {
                     if (successfulUrls.length > 0) {
@@ -1158,7 +1173,10 @@
             const parentEl = event.target.parentElement;
             const placeholderUrl = 'https://placehold.co/800x600/f1f5f9/cbd5e1?text=No+Image';
 
-            if (parentEl.tagName === 'IMG') {
+            const innerImg = parentEl.querySelector('img');
+            if (innerImg) {
+                innerImg.src = placeholderUrl;
+            } else if (parentEl.tagName === 'IMG') {
                 parentEl.src = placeholderUrl;
             } else {
                 const currentStyle = parentEl.style.backgroundImage || '';
