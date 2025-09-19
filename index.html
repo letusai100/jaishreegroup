@@ -3,78 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO-Optimized Title -->
-    <title>Jai Shree Group | Top Real Estate &amp; Interior Designers in Jaipur</title>
+    <title>Jai Shree Group - Premium Real Estate & Interiors</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Discover Jai Shree Group, Jaipur's trusted name in real estate and turnkey interiors since 1980. We specialize in luxury residential, commercial projects, and bespoke interior design. Quality, integrity, and innovation guaranteed.">
-    <meta name="keywords" content="real estate jaipur, interior designers jaipur, property developers rajasthan, commercial projects jaipur, luxury flats jaipur, turnkey interiors, construction company jaipur, Jai Shree Group, best builders in jaipur">
-    <meta name="author" content="Jai Shree Group">
-    <link rel="canonical" href="https://www.jaisshreegroup.in/">
-    <!-- Note: You should create a 32x32 favicon.ico file and place it in the root of your website -->
-    <link rel="icon" href="https://placehold.co/32x32/c09a3e/FFFFFF?text=JSG" type="image/x-icon">
-    <!-- DEVELOPER NOTE: To accelerate SEO updates, submit this site's sitemap to Google Search Console and request re-indexing. -->
-
-    <!-- Open Graph / Facebook Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.jaisshreegroup.in/">
-    <meta property="og:title" content="Jai Shree Group | Top Real Estate & Interior Designers in Jaipur">
-    <meta property="og:description" content="Building dreams since 1980. Jai Shree Group is a leader in Rajasthan for high-quality real estate development and comprehensive interior design solutions.">
-    <!-- Note: Replace this with a URL to a high-quality image representing your brand, like a hero shot of a project. 1200x630px is recommended. -->
-    <meta property="og:image" content="https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&w=1200">
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.jaisshreegroup.in/">
-    <meta name="twitter:title" content="Jai Shree Group | Top Real Estate & Interior Designers in Jaipur">
-    <meta name="twitter:description" content="Building dreams since 1980. Jai Shree Group is a leader in Rajasthan for high-quality real estate development and comprehensive interior design solutions.">
-    <!-- Note: Replace this with the same high-quality image URL used for og:image. -->
-    <meta name="twitter:image" content="https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&w=1200">
-
-    <!-- JSON-LD Schema for rich results -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "RealEstateAgent",
-      "name": "Jai Shree Group",
-      "url": "https://www.jaisshreegroup.in/",
-      "logo": "https://placehold.co/200x60/c09a3e/FFFFFF?text=Jai+Shree+Group",
-      "image": "https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "description": "Jai Shree Group is a premier real estate development and turnkey interior design firm based in Jaipur, Rajasthan, since 1980. We specialize in residential colonies, commercial complexes, and luxury interiors.",
-      "telephone": "+91-91161-27798",
-      "email": "jaishreegroup1980@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "41, Nemi Nagar Extension, Vaishali Nagar",
-        "addressLocality": "Jaipur",
-        "postalCode": "302021",
-        "addressRegion": "Rajasthan",
-        "addressCountry": "IN"
-      },
-      "openingHours": "Mo,Tu,We,Th,Fr,Sa 10:00-19:00",
-      "priceRange": "$$$",
-      "sameAs": [
-        "https://www.instagram.com/jai_shree_group"
-      ]
-    }
-    </script>
-    
-    <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles -->
     <style>
         :root {
             --bg-light: #fdfdfd;
@@ -147,7 +87,7 @@
         #scroll-to-top.visible { bottom: 120px; }
         
         /* Modals for Image Management */
-        #upload-modal .modal-content, #project-details-modal .modal-content, #client-details-modal .modal-content { max-width: 500px; }
+        #upload-modal .modal-content, #project-details-modal .modal-content { max-width: 500px; }
         #drop-zone { border: 3px dashed #ccc; border-radius: 0.5rem; padding: 3rem 1rem; text-align: center; transition: all 0.2s; }
         #drop-zone.drag-over { border-color: var(--teal); background-color: #f0fdfa; }
         
@@ -177,6 +117,7 @@
         }
         #csr-slider-wrapper .prev { left: 16px; }
         #csr-slider-wrapper .next { right: 16px; }
+        #csr-slider-wrapper .csr-slide { display: none; }
         
         /* Chat Assistant Styles */
         #chat-assistant { position: fixed; bottom: 40px; right: 110px; z-index: 100; }
@@ -232,7 +173,7 @@
             #chat-assistant-icon { width: 50px; height: 50px; font-size: 24px; }
             #scroll-to-top { width: 44px; height: 44px; font-size: 20px; }
             #scroll-to-top.visible { bottom: 90px; right: 20px; }
-            #chat-box { width: calc(100vw - 30px); right: 15px; bottom: 80px; }
+            #chat-box { width: calc(100vw - 30px); right: -80px; bottom: 80px; }
         }
     </style>
 </head>
@@ -240,7 +181,6 @@
     
     <input type="file" id="image-uploader" class="hidden" accept="image/*" multiple>
 
-    <!-- Admin Panel -->
     <div id="admin-panel" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-[1001] bg-primary-dark text-white p-4 rounded-lg shadow-2xl flex items-center gap-4">
         <p class="font-bold">Admin Mode</p>
         <button id="save-changes-btn" class="bg-teal hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-md">
@@ -250,12 +190,10 @@
         <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">Logout</button>
     </div>
 
-    <!-- Admin Login Modal -->
     <div id="admin-login-modal" class="modal-overlay">
         <div class="modal-content"><h2 class="text-3xl font-display font-bold mb-4">Admin Login</h2><form id="admin-login-form"><div class="mb-4"><label for="admin-email" class="block font-semibold mb-2">Email</label><input type="email" id="admin-email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gold" required></div><div class="mb-4"><label for="admin-password" class="block font-semibold mb-2">Password</label><input type="password" id="admin-password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gold" required></div><button type="submit" class="w-full bg-primary-dark text-white font-bold py-3 px-4 rounded-md hover:bg-gold transition-colors">Login</button><p id="login-error" class="text-red-500 text-sm mt-4 text-center hidden"></p></form></div>
     </div>
     
-    <!-- Image Upload (Drag & Drop) Modal -->
     <div id="upload-modal" class="modal-overlay" onclick="closeModal('upload-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('upload-modal')"></i>
@@ -267,7 +205,6 @@
         </div>
     </div>
     
-    <!-- Hero Image Manager Modal -->
     <div id="hero-manager-modal" class="modal-overlay" onclick="closeModal('hero-manager-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('hero-manager-modal')"></i>
@@ -283,8 +220,7 @@
         </div>
     </div>
 
-     <!-- Project Images Manager Modal -->
-    <div id="project-images-manager-modal" class="modal-overlay" onclick="closeModal('project-images-manager-modal')">
+     <div id="project-images-manager-modal" class="modal-overlay" onclick="closeModal('project-images-manager-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('project-images-manager-modal')"></i>
             <h2 id="project-images-title" class="text-3xl font-display font-bold mb-2">Manage Project Images</h2>
@@ -298,7 +234,6 @@
         </div>
     </div>
     
-    <!-- Project Details Modal -->
     <div id="project-details-modal" class="modal-overlay" onclick="closeModal('project-details-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('project-details-modal')"></i>
@@ -307,23 +242,9 @@
         </div>
     </div>
 
-    <!-- Client Details Modal -->
-    <div id="client-details-modal" class="modal-overlay" onclick="closeModal('client-details-modal')">
-        <div class="modal-content" onclick="event.stopPropagation();">
-            <i class="fas fa-times modal-close" onclick="closeModal('client-details-modal')"></i>
-            <div id="client-details-content" class="text-center">
-                <!-- Content will be injected by JS -->
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Header & Navbar -->
     <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-             <a href="#" onclick="showPage('home')" data-key-img="logo" class="relative inline-block">
-                <img src="" alt="Jai Shree Group Logo" class="h-16 w-auto">
-            </a>
+            <a href="#" onclick="showPage('home')"><img data-key-img="logo" src="" alt="Jai Shree Group Logo" class="h-20 w-auto"></a>
             <div class="hidden md:flex items-center space-x-8" id="nav-links">
                 <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
                 <a href="#" onclick="showPage('about')" class="nav-link">About Us</a>
@@ -347,12 +268,10 @@
     </header>
 
     <main>
-        <!-- Home Section -->
         <section id="home" class="page-section active">
             <div class="relative h-[80vh] flex items-center justify-center text-center text-white overflow-hidden">
                 <div id="hero-slideshow" class="absolute top-0 left-0 w-full h-full">
-                     <!-- This will be populated by JavaScript -->
-                </div>
+                     </div>
                 <div class="relative z-10 px-6">
                     <h1 class="text-4xl md:text-6xl font-bold font-display text-white hero-title" data-key="hero-title"></h1>
                     <p class="mt-4 text-xl" data-key="hero-subtitle"></p>
@@ -387,22 +306,22 @@
 
             <section class="py-20 bg-white">
                 <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="why-choose-title">Why Partner with Jai Shree Group?</h2>
+                    <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="why-choose-title"></h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="0">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-trophy"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-1-title">Unmatched Quality</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-1-text">Our four-decade legacy is built on a foundation of uncompromising quality, using premium materials and adhering to the highest construction standards.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-1-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-1-text"></p>
                         </div>
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="200">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-check-circle"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-2-title">Proven Experience</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-2-text">We have a proven track record of delivering over 1155 diverse projects on schedule and budget, ensuring peace of mind and a seamless experience for our clients.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-2-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-2-text"></p>
                         </div>
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="400">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-users"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-3-title">Client-Centric Approach</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-3-text">Your vision is our blueprint. We believe in collaborative partnerships, ensuring transparent communication and a personalized approach from the first sketch to the final handover.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-3-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-3-text"></p>
                         </div>
                     </div>
                 </div>
@@ -443,7 +362,7 @@
 
             <div id="counter-section" class="bg-white py-16">
                 <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div><i class="fas fa-home text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-1-value" data-target="1155">0</p><p class="text-text-muted" data-key="stats-1-label"></p></div>
+                    <div><i class="fas fa-home text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-1-value" data-target="700">0</p><p class="text-text-muted" data-key="stats-1-label"></p></div>
                     <div><i class="fas fa-ruler-combined text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-2-value" data-target="75">0</p><p class="text-text-muted" data-key="stats-2-label"></p></div>
                     <div><i class="fas fa-hard-hat text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-3-value" data-target="600">0</p><p class="text-text-muted" data-key="stats-3-label"></p></div>
                     <div><i class="fas fa-calendar-alt text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-4-value" data-target="40">0</p><p class="text-text-muted" data-key="stats-4-label"></p></div>
@@ -451,128 +370,178 @@
             </div>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="page-section py-20">
             <div class="container mx-auto px-6">
                 <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div class="animate-on-scroll animate-slide-in-left">
                         <h2 class="text-4xl font-bold font-display" data-key="about-title">The Jai Shree Group Story</h2>
-                        <p class="mt-4 text-text-muted" data-key="about-p1">Founded in 1980 on the principles of integrity and quality, Jai Shree Group embarked on a mission to redefine the real estate landscape of Rajasthan. From pioneering residential plotting to developing landmark commercial hubs, we have grown into a diversified powerhouse synonymous with trust and architectural excellence.</p>
-                        <p class="mt-4 text-text-muted" data-key="about-p2">Our expansion into turnkey interiors was a natural evolution, driven by our commitment to provide seamless, end-to-end solutions for our discerning clientele. Today, our success is a testament to the enduring relationships we've built with our clients, partners, and the community we proudly serve.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-p1">Founded on the principles of integrity and quality, Jai Shree Group began its journey in 1980 with a vision to redefine the real estate landscape of Rajasthan. From humble beginnings in residential plotting, we have grown into a diversified powerhouse, delivering landmark residential and commercial projects that shape the skyline.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-p2">Our expansion into turnkey interiors was a natural evolution, driven by our desire to provide holistic, end-to-end solutions for our discerning clientele. Our success is built on a foundation of trust with our clients, partners, and community.</p>
                         <h3 class="text-3xl font-bold font-display mt-8" data-key="about-mission-title">Our Mission & Vision</h3>
-                        <p class="mt-4 text-text-muted" data-key="about-mission-text"><b>Our Mission:</b> To engineer, build, and design spaces of exceptional quality and enduring value that exceed client expectations, while upholding the highest standards of ethics and sustainability.</p>
-                        <p class="mt-4 text-text-muted" data-key="about-vision-text"><b>Our Vision:</b> To be India’s most trusted and innovative real estate and interiors group, recognized for creating iconic landmarks and enriching communities for generations to come.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-mission-text"><b>Our Mission:</b> To deliver superior quality construction and design solutions that exceed client expectations, while upholding the highest standards of ethics and sustainability.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-vision-text"><b>Our Vision:</b> To be India’s most trusted and innovative real estate and interiors group, renowned for creating lasting value and iconic landmarks.</p>
                         <button onclick="openModal('director-modal')" class="mt-8 bg-primary-dark text-white font-bold py-3 px-6 rounded-md hover:bg-gold">Meet The Founder</button>
                     </div>
                     <div id="timeline" class="animate-on-scroll animate-slide-in-right">
                         <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-flag"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">1980 - The Beginning</h3><p class="text-text-muted">Jai Shree Group is founded, starting with residential plotting projects.</p></div></div>
                         <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-building"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">1995 - Expansion</h3><p class="text-text-muted">Expanded into constructing luxury flats and commercial properties.</p></div></div>
                         <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-couch"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">2005 - Interiors Division</h3><p class="text-text-muted">Launched a full-service interior design wing to offer turnkey solutions.</p></div></div>
-                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-star"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">2024 - A Trusted Name</h3><p class="text-text-muted">Recognized as a leading name with over 1155 successful projects.</p></div></div>
+                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-star"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">2024 - A Trusted Name</h3><p class="text-text-muted">Recognized as a leading name with over 700 successful projects.</p></div></div>
                     </div>
                 </div>
 
                 <div class="mt-20 text-center">
                     <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="values-title">Our Core Values</h2>
                     <div class="grid md:grid-cols-3 gap-12">
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-gem text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-1-title">Quality</h3><p class="text-text-muted mt-2" data-key="value-1-text">A non-negotiable commitment to superior craftsmanship, premium materials, and meticulous attention to detail from foundation to finish.</p></div>
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-handshake text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="value-2-title">Integrity</h3><p class="text-text-muted mt-2" data-key="value-2-text">Conducting our business with unwavering honesty, transparency, and ethical standards, building relationships based on trust.</p></div>
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-lightbulb text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-3-title">Innovation</h3><p class="text-text-muted mt-2" data-key="value-3-text">Embracing cutting-edge technologies and sustainable practices to deliver intelligent, future-ready spaces that inspire.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-gem text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-1-title">Quality</h3><p class="text-text-muted mt-2" data-key="value-1-text">Delivering excellence and superior craftsmanship in every detail is the hallmark of our work.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-handshake text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="value-2-title">Integrity</h3><p class="text-text-muted mt-2" data-key="value-2-text">We conduct our business with the highest levels of honesty, transparency, and ethical standards.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-lightbulb text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-3-title">Innovation</h3><p class="text-text-muted mt-2" data-key="value-3-text">Continuously embracing new ideas and technologies to build smarter, more sustainable spaces for the future.</p></div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Services Section -->
         <section id="services" class="page-section py-20 bg-alt">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 animate-on-scroll animate-fade-in-up">
-                     <h1 class="text-5xl font-bold font-display" data-key="services-title">Our Spectrum of Services</h1>
-                     <p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="services-subtitle">Delivering end-to-end excellence in real estate and interior design, meticulously tailored to your vision.</p>
+                     <h1 class="text-5xl font-bold font-display" data-key="services-title">Our Services</h1>
+                     <p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="services-subtitle">Comprehensive solutions in real estate and interior design, tailored to your needs.</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="animate-on-scroll animate-slide-in-left"><img data-key-img="services-img-1" src="" alt="Real Estate Development" class="rounded-lg shadow-xl"></div>
-                    <div class="animate-on-scroll animate-slide-in-right"><h2 class="text-3xl font-bold font-display" data-key="services-1-title">Real Estate Development</h2><p class="text-text-muted mt-4" data-key="services-1-p">We manage the entire lifecycle of property development with precision and expertise, navigating regulatory landscapes to deliver projects on time and within budget, ensuring maximum ROI for our stakeholders.</p><ul class="mt-6 space-y-3"><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li1"><strong>Residential & Commercial Construction:</strong> Building modern homes and state-of-the-art commercial spaces.</span></li><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li2"><strong>Colony & Township Development:</strong> Creating vibrant, well-planned communities from the ground up.</span></li><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li3"><strong>Infrastructure Projects:</strong> Expertise in road construction and other large-scale civil engineering works.</span></li></ul></div>
+                    <div class="animate-on-scroll animate-slide-in-left"><img data-key-img="services-img-1" src="https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Real Estate Services" class="rounded-lg shadow-xl"></div>
+                    <div class="animate-on-scroll animate-slide-in-right">
+                        <h2 class="text-4xl font-bold font-display" data-key="services-1-title">Real Estate Development</h2>
+                        <p class="text-text-muted mt-4 text-lg" data-key="services-1-p">We specialize in a wide range of real estate services, ensuring quality and timely delivery for every project.</p>
+                        <ul class="mt-6 space-y-3 text-lg">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li1"><strong>Residential & Commercial Construction:</strong> Building modern homes and state-of-the-art commercial spaces.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li2"><strong>Colony & Township Development:</strong> Creating vibrant, well-planned communities from the ground up.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li3"><strong>Infrastructure Projects:</strong> Expertise in road construction and other large-scale civil engineering works.</span></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-12 items-center mt-20">
-                     <div class="md:order-2 animate-on-scroll animate-slide-in-right"><img data-key-img="services-img-2" src="" alt="Interior Design" class="rounded-lg shadow-xl"></div>
-                    <div class="md:order-1 animate-on-scroll animate-slide-in-left"><h2 class="text-3xl font-bold font-display" data-key="services-2-title">Turnkey Interior Solutions</h2><p class="text-text-muted mt-4" data-key="services-2-p">Our interior design division offers a seamless, hassle-free experience, transforming your vision into reality. We manage every detail from concept to completion, delivering bespoke spaces that are both beautiful and functional.</p><ul class="mt-6 space-y-3"><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li1"><strong>Residential Interiors:</strong> Crafting beautiful and functional interiors for flats, houses, and villas.</span></li><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li2"><strong>Commercial & Institutional Interiors:</strong> Designing innovative spaces for offices, hospitals, universities, and retail.</span></li><li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li3"><strong>Complete Turnkey Projects:</strong> From concept to completion, we manage every aspect of your interior project.</span></li></ul></div>
+                     <div class="md:order-2 animate-on-scroll animate-slide-in-right"><img data-key-img="services-img-2" src="" alt="Interior Design Services" class="rounded-lg shadow-xl"></div>
+                    <div class="md:order-1 animate-on-scroll animate-slide-in-left">
+                        <h2 class="text-4xl font-bold font-display" data-key="services-2-title">Turnkey Interior Solutions</h2>
+                        <p class="text-text-muted mt-4 text-lg" data-key="services-2-p">Our interior design division, Jai Shree Interiors, offers end-to-end solutions to transform your space.</p>
+                        <ul class="mt-6 space-y-3 text-lg">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li1"><strong>Residential Interiors:</strong> Crafting beautiful and functional interiors for flats, houses, and villas.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li2"><strong>Commercial & Institutional Interiors:</strong> Designing innovative spaces for offices, hospitals, universities, and retail.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li3"><strong>Complete Turnkey Projects:</strong> From concept to completion, we manage every aspect of your interior project.</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" class="page-section py-20 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="projects-title">Our Portfolio</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="projects-subtitle">A portfolio of landmarks that define architectural excellence and investment value across India.</p></div>
+                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="projects-title">Our Projects</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="projects-subtitle">A testament to our commitment to quality, innovation, and architectural excellence across India.</p></div>
                 <div id="real-estate" class="portfolio-category mb-16">
                     <h2 class="text-3xl font-bold font-display mb-8 text-center animate-on-scroll animate-fade-in-up" data-key="project-re-title">Real Estate Projects</h2>
                     <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up"><button class="portfolio-tab active" data-key="project-tab-colonies" onclick="showTab(event, 'colonies')">Colonies</button><button class="portfolio-tab" data-key="project-tab-residential" onclick="showTab(event, 'residential')">Residential</button><button class="portfolio-tab" data-key="project-tab-commercial" onclick="showTab(event, 'commercial')">Commercial</button></div>
-                    <div id="colonies" class="portfolio-tab-content active"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-col')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Colony Project</button></div><div id="colonies-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
-                    <div id="residential" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Project</button></div><div id="residential-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
-                    <div id="commercial" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Project</button></div><div id="commercial-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
+                    <div id="colonies" class="portfolio-tab-content active">
+                        <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-col')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Colony Project</button></div>
+                        <div id="colonies-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Anandam+Vihar" alt="Anandam Vihar" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Anandam Vihar</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A premium plotted development offering a serene and green living environment with modern amenities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Royal+City" alt="Royal City" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Royal City</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An expansive township project that combines traditional aesthetics with contemporary infrastructure.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Green+Valley" alt="Green Valley" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Green Valley</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Udaipur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Nestled near the Aravalli hills, this colony offers picturesque views and a tranquil lifestyle.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=JSG+Enclave" alt="JSG Enclave" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Enclave</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Ajmer, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A well-planned residential colony with robust infrastructure and community facilities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                        </div>
+                    </div>
+                    <div id="residential" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Project</button></div>
+                        <div id="residential-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Elegance+Towers" alt="Elegance Towers" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Elegance Towers</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Vaishali Nagar, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Luxury apartments with world-class amenities and premium finishes.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Serene+Villas" alt="Serene Villas" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Serene Villas</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Udaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Exclusive independent villas offering privacy and comfort.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=The+Address" alt="The Address" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">The Address</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Civil Lines, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">High-end residential flats in a prime urban location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=JSG+Heights" alt="JSG Heights" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Heights</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Affordable housing with modern design and essential facilities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Lakeview+Apartments" alt="Lakeview Apartments" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Lakeview Apartments</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bhopal</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern living spaces with scenic views of the upper lake.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Urban+Residency" alt="Urban Residency" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Urban Residency</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Gurgaon</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Contemporary homes designed for the modern metropolitan family.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Heritage+Homes" alt="Heritage Homes" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Heritage Homes</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pushkar</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Residences that blend traditional architecture with modern comforts.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Skyline+Flats" alt="Skyline Flats" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Skyline Flats</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Compact and efficient apartments in a bustling city location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                        </div>
+                    </div>
+                    <div id="commercial" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Project</button></div>
+                        <div id="commercial-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Corporate+Plaza" alt="Corporate Plaza" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Corporate Plaza</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>C-Scheme, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A landmark business center with state-of-the-art office spaces.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=JSG+Business+Hub" alt="JSG Business Hub" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Business Hub</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pune</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern commercial complex designed for IT and corporate offices.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Orion+Mall" alt="Orion Mall" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Orion Mall</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Indore</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A premier shopping and entertainment destination with diverse retail spaces.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Trade+Tower" alt="Trade Tower" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Trade Tower</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Ahmedabad</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An iconic commercial tower offering premium office and retail units.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=City+Center" alt="City Center" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">City Center</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Kota</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A mixed-use development featuring shops, offices, and restaurants.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Apex+Hotel" alt="Apex Hotel" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Apex Hotel</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Goa</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Construction of a luxury boutique hotel in a prime tourist location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                        </div>
+                    </div>
                 </div>
                 <div id="interiors" class="portfolio-category">
                      <h2 class="text-3xl font-bold font-display mb-8 text-center animate-on-scroll animate-fade-in-up" data-key="project-int-title">Interior Design Projects</h2>
                      <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up"><button class="interior-tab active" data-key="project-tab-int-res" onclick="showInteriorTab(event, 'residential-int')">Residential</button><button class="interior-tab" data-key="project-tab-int-com" onclick="showInteriorTab(event, 'commercial-int')">Commercial</button></div>
-                    <div id="residential-int" class="interior-tab-content active"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Interior</button></div><div id="residential-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
-                    <div id="commercial-int" class="interior-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Interior</button></div><div id="commercial-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
+                    <div id="residential-int" class="interior-tab-content active"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Interior</button></div>
+                        <div id="residential-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Modern+Villa" alt="Modern Villa" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Modern Villa Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A complete turnkey interior solution for a luxury villa.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Penthouse+Design" alt="Penthouse Design" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Penthouse Design</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Chic and contemporary interiors for a high-rise penthouse.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Classic+Apartment" alt="Classic Apartment" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Classic Apartment</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Delhi</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Elegant and timeless interior design for a 3BHK flat.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Minimalist+Home" alt="Minimalist Home" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Minimalist Home</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bangalore</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Clean lines and a neutral palette define this modern home.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Farmhouse+Retreat" alt="Farmhouse Retreat" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Farmhouse Retreat</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Lonavala</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Rustic and cozy interiors for a weekend getaway home.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Duplex+Makeover" alt="Duplex Makeover" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Duplex Makeover</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Hyderabad</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Complete renovation and interior styling for a duplex house.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Studio+Apartment" alt="Studio Apartment" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Studio Apartment</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pune</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Smart and functional design for a compact living space.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Royal+Haveli" alt="Royal Haveli" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Royal Haveli Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Restoration and interior design with a traditional Rajasthani touch.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                        </div>
+                    </div>
+                    <div id="commercial-int" class="interior-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Interior</button></div>
+                        <div id="commercial-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Corporate+Office" alt="Corporate Office" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Corporate Office</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Gurgaon</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A vibrant and productive workspace for a leading tech company.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Boutique+Hotel" alt="Boutique Hotel" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Boutique Hotel Lobby</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Goa</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Luxurious and welcoming interior design for a hotel entrance.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Fine-Dining+Restaurant" alt="Fine-Dining Restaurant" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Fine-Dining Restaurant</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An ambient and sophisticated setting for a culinary experience.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Retail+Showroom" alt="Retail Showroom" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Retail Showroom</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern and engaging showroom design for a luxury brand.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Hospital+Interior" alt="Hospital Interior" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Hospital Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Kota</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Clean, calming, and functional design for a multi-specialty hospital.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=University+Library" alt="University Library" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">University Library</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bhopal</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An inspiring and collaborative space for learning and research.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Our Clientele Section -->
         <section id="clientele" class="page-section py-20 bg-alt">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="clientele-title">Our Esteemed Clientele</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="clientele-subtitle">We are proud to have forged lasting partnerships with industry leaders and prestigious organizations.</p></div>
+                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="clientele-title">Our Esteemed Clientele</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="clientele-subtitle">We are proud to have collaborated with industry leaders and prestigious organizations.</p></div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105"><button onclick="openClientDetails('client-logo-1')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-1" src="" alt="Honeywell Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="50"><button onclick="openClientDetails('client-logo-2')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-2" src="" alt="Aditya Birla Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="100"><button onclick="openClientDetails('client-logo-3')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-3" src="" alt="Ambuja Cement Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="150"><button onclick="openClientDetails('client-logo-4')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-4" src="" alt="Tata Projects Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="200"><button onclick="openClientDetails('client-logo-5')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-5" src="" alt="L&T Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="250"><button onclick="openClientDetails('client-logo-6')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-6" src="" alt="Godrej Properties Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="300"><button onclick="openClientDetails('client-logo-7')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-7" src="" alt="Oberoi Realty Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="350"><button onclick="openClientDetails('client-logo-8')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-8" src="" alt="HSBC Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="400"><button onclick="openClientDetails('client-logo-9')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-9" src="" alt="Kotak Bank Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="450"><button onclick="openClientDetails('client-logo-10')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-10" src="" alt="Lupin Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="500"><button onclick="openClientDetails('client-logo-11')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-11" src="" alt="Infosys Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
-                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up transition-transform hover:scale-105" data-delay="550"><button onclick="openClientDetails('client-logo-12')" class="w-full h-full flex items-center justify-center"><img data-key-img="client-logo-12" src="" alt="Wipro Logo" class="mx-auto max-h-12 object-contain pointer-events-none"></button></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up"><img data-key-img="client-logo-1" src="" alt="Client Logo 1" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="50"><img data-key-img="client-logo-2" src="" alt="Client Logo 2" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="100"><img data-key-img="client-logo-3" src="" alt="Client Logo 3" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="150"><img data-key-img="client-logo-4" src="" alt="Client Logo 4" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="200"><img data-key-img="client-logo-5" src="" alt="Client Logo 5" class="mx-auto max-h-12 object-contain"></div>
                 </div>
             </div>
         </section>
         
-        <!-- CSR Section -->
         <section id="csr" class="page-section py-20 bg-alt">
             <div class="container mx-auto px-6">
                  <div class="text-center bg-white p-8 md:p-12 rounded-lg shadow-lg">
-                    <h2 class="text-4xl font-bold font-display mb-4 animate-on-scroll animate-fade-in-up" data-key="csr-title">Building a Better Tomorrow</h2>
-                    <p class="text-xl text-gold font-semibold mb-8 animate-on-scroll animate-fade-in-up" data-key="csr-subtitle">A Social Commitment by the Mangilal Suthar Charitable Trust</p>
-                    <p class="text-text-muted mt-2 max-w-3xl mx-auto mb-12 animate-on-scroll animate-fade-in-up" data-key="csr-p">We believe that true success is measured by the positive impact we create. Our commitment extends beyond construction to building stronger communities, fostering sustainable environments, and empowering future generations through focused initiatives.</p>
+                    <h2 class="text-4xl font-bold font-display mb-4 animate-on-scroll animate-fade-in-up" data-key="csr-title">Corporate Social Responsibility</h2>
+                    <p class="text-xl text-gold font-semibold mb-8 animate-on-scroll animate-fade-in-up" data-key="csr-subtitle">Under the Mangilal Suthar Charitable Trust</p>
+                    <p class="text-text-muted mt-2 max-w-3xl mx-auto mb-12 animate-on-scroll animate-fade-in-up" data-key="csr-p">We are committed to building a better society, not just better buildings. Our initiatives focus on education, environmental sustainability, and community welfare.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-school text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-1-title">Education & Empowerment</h3><p class="text-text-muted mt-2" data-key="csr-item-1-text">We operate dedicated hostels for underprivileged children, providing not just safe housing but also comprehensive educational support to empower them for a brighter future.</p></div>
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-heart text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-2-title">Gausala (Cow Shelter)</h3><p class="text-text-muted mt-2" data-key="csr-item-2-text">Honoring cultural values by caring for cows with shelter, food, and medical attention, promoting ethical animal welfare.</p></div>
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-graduation-cap text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-3-title">Educational Scholarships</h3><p class="text-text-muted mt-2" data-key="csr-item-3-text">Empowering the next generation of leaders by offering scholarships to bright, deserving children from low-income families.</p></div>
-                        <div class="animate-on-scroll animate-fade-in-up" data-delay="600"><i class="fas fa-tree text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-4-title">Green Initiatives</h3><p class="text-text-muted mt-2" data-key="csr-item-4-text">Our ambitious environmental goal is to plant over 10,000 trees across Rajasthan. This initiative aims to restore ecological balance, improve air quality, and create a sustainable green legacy.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-school text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-1-title">Student Hostels</h3><p class="text-text-muted mt-2" data-key="csr-item-1-text">Providing free, safe, and supportive hostel facilities for underprivileged students.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-heart text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-2-title">Gausala (Cow Shelter)</h3><p class="text-text-muted mt-2" data-key="csr-item-2-text">Caring for cows by providing shelter, food, and medical care, promoting animal welfare.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-graduation-cap text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-3-title">Educational Scholarships</h3><p class="text-text-muted mt-2" data-key="csr-item-3-text">Offering scholarships to bright and deserving children from low-income families.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="600"><i class="fas fa-tree text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-4-title">Tree Planting Drive</h3><p class="text-text-muted mt-2" data-key="csr-item-4-text">A commitment to planting over 10,000 trees to foster a greener, healthier future.</p></div>
                     </div>
-
-                    <div class="border-t-2 border-dashed border-gray-200 mt-16 pt-12 animate-on-scroll animate-fade-in-up" data-delay="800">
-                        <h3 class="text-3xl font-bold font-display mb-4" data-key="csr-sustainability-title">Commitment to Sustainability</h3>
-                        <p class="text-text-muted max-w-3xl mx-auto" data-key="csr-sustainability-text">Beyond philanthropy, we integrate sustainable practices into our core operations. We are dedicated to minimizing our environmental footprint by implementing efficient waste management systems, prioritizing water conservation, and sourcing eco-friendly materials wherever possible. We believe that responsible building is the only way to build for the future.</p>
-                    </div>
-
                     <h3 class="text-3xl font-bold font-display mt-16 mb-8 animate-on-scroll animate-fade-in-up" data-key="csr-gallery-title">Glimpses of Our Journey</h3>
                     <div class="admin-gallery-controls justify-center mb-4"><button onclick="openUploadModal('csr')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add CSR Image</button></div>
-                    <div id="csr-slider-wrapper" class="relative"></div>
+                    <div id="csr-slider-wrapper" class="relative">
+                        <div class="csr-slide" style="display: block;"><div class="relative"><img src="https://images.pexels.com/photos/2678315/pexels-photo-2678315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CSR - Education Initiative"></div></div>
+                        <div class="csr-slide" style="display: none;"><div class="relative"><img src="https://images.pexels.com/photos/162813/cow-head-horns-nature-162813.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CSR - Gausala"></div></div>
+                        <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-chevron-left"></i></a>
+                        <a class="next" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="page-section py-20 bg-alt">
             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
                 <div class="bg-white p-8 rounded-lg shadow-lg animate-on-scroll animate-slide-in-left">
-                    <h2 class="text-3xl font-bold font-display mb-6" data-key="contact-form-title">Let's Build Together</h2>
+                    <h2 class="text-3xl font-bold font-display mb-6" data-key="contact-form-title">Send Us a Message</h2>
                     <form id="contact-form">
                         <div class="mb-4"><label for="name" class="block font-semibold mb-2">Full Name</label><input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-md" required></div>
                         <div class="mb-4"><label for="email" class="block font-semibold mb-2">Email Address</label><input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-md" required></div>
@@ -588,13 +557,12 @@
                         <a href="https://share.google/ZOhZZVzzGTf8Wf7Fb" target="_blank" class="block p-4 mb-4 bg-gray-100 rounded-lg"><p class="font-semibold">Our Location</p><p class="text-text-muted flex items-start"><i class="fas fa-map-marker-alt text-lg text-gold mt-1 mr-3"></i><span data-key="contact-location"></span></p></a>
                         <ul class="space-y-4 text-text-muted"><li class="flex items-center"><i class="fas fa-envelope text-xl text-gold mr-4"></i><a href="mailto:jaishreegroup1980@gmail.com" class="hover:text-gold" data-key="contact-email"></a></li><li class="flex items-center"><i class="fab fa-whatsapp text-xl text-gold mr-4"></i><a href="https://wa.me/919116127798" target="_blank" class="hover:text-gold" data-key="contact-phone"></a></li></ul>
                     </div>
-                    <div class="rounded-lg shadow-lg overflow-hidden h-80"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.031652944265!2d75.74465407510118!3d26.90239637665201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db4a67558309d%3A0xab6c65964b581927!2sJai%20shree%20group!5e0!3m2!1sen!2sin!4v1723475850912!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                    <div class="rounded-lg shadow-lg overflow-hidden h-80"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.006129994628!2d75.74810567520708!3d26.90327317665187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db4989635657b%3A0x8b320872c0506213!2sNemi%20Nagar%2c%20Vaishali%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302021!5e0!3m2!1sen!2sin!4v1726776953259!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-primary-dark text-white">
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -603,11 +571,10 @@
                 <div><h3 class="text-lg font-semibold">Contact Info</h3><ul class="mt-4 space-y-3 text-gray-400"><li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3"></i><span data-key="footer-contact-address"></span></li><li class="flex items-center"><i class="fas fa-envelope mr-3"></i><a href="mailto:jaishreegroup1980@gmail.com" class="hover:text-gold">jaishreegroup1980@gmail.com</a></li><li class="flex items-center"><i class="fab fa-whatsapp mr-3"></i><a href="https://wa.me/919116127798" target="_blank" class="hover:text-gold">+91 91161 27798</a></li></ul></div>
                 <div><h3 class="text-lg font-semibold">Follow Us</h3><div class="flex space-x-4 mt-4"><a href="https://www.instagram.com/jai_shree_group" target="_blank" class="text-2xl hover:text-gold"><i class="fab fa-instagram"></i></a></div></div>
             </div>
-            <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500"><p id="footer-copyright">&copy; 2024 Jai Shree Group. All Rights Reserved.</p></div>
+            <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500"><p id="footer-copyright">© 2024 Jai Shree Group. All Rights Reserved.</p></div>
         </div>
     </footer>
 
-    <!-- Modals -->
     <div id="director-modal" class="modal-overlay" onclick="closeModal('director-modal')">
         <div class="modal-content" onclick="event.stopPropagation();"><i class="fas fa-times modal-close" onclick="closeModal('director-modal')"></i><h2 class="text-3xl font-display font-bold mb-4">Meet The Founder</h2><div class="flex flex-col sm:flex-row gap-6 items-center"><img data-key-img="founder-modal-img" src="" alt="Founder Bajaranglal Suthar" class="rounded-full w-36 h-36 object-cover border-4 border-gold"><div><h3 class="text-2xl font-bold text-gold" data-key="founder-modal-name"></h3><p class="text-text-muted mt-2" data-key="founder-modal-bio"></p></div></div></div>
     </div>
@@ -616,12 +583,11 @@
         <div class="modal-content" onclick="event.stopPropagation();"><div class="flex justify-between items-center mb-4"><h2 id="ai-model-title" class="text-3xl font-display font-bold">Conceptual Model</h2><i class="fas fa-times modal-close" onclick="closeModal('ai-model-modal')"></i></div><div id="ai-model-output"><div class="spinner"></div></div><p class="text-center mt-4 text-sm text-text-muted">This is a design concept generated to visualize the project. The final output may vary.</p></div>
     </div>
     
-     <!-- Chat Assistant -->
-    <div id="chat-assistant">
+     <div id="chat-assistant">
         <div id="chat-box">
             <div id="chat-header">
                 <h3 class="font-bold">Jai Shree Assistant</h3>
-                <button id="close-chat-box" class="text-xl">&times;</button>
+                <button id="close-chat-box" class="text-xl">×</button>
             </div>
             <div id="chat-body"></div>
             <div id="chat-footer">
@@ -632,7 +598,6 @@
         <div id="chat-assistant-icon"><i class="fas fa-headset"></i></div>
     </div>
 
-    <!-- WhatsApp & Scroll Top -->
     <a href="https://wa.me/919116127798" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" id="scroll-to-top"><i class="fas fa-arrow-up"></i></a>
 
@@ -650,42 +615,6 @@
         let initializeAnimationsForPage = () => {};
         let _uploadContext = {}; // Stores context for file uploads
         
-        // -----------------------------------------------------------------------------
-        // --- CLIENTELE DATA & LOGIC ---
-        // -----------------------------------------------------------------------------
-        const clientData = {
-            'client-logo-1': { name: 'Honeywell', description: 'Provided comprehensive construction and interior solutions for Honeywell\'s new corporate office in Jaipur, focusing on creating a smart, energy-efficient, and collaborative workspace for over 500 employees.' },
-            'client-logo-2': { name: 'Aditya Birla Group', description: 'Partnered with Aditya Birla Group for the development of their regional headquarters, delivering a landmark commercial building that reflects their brand prestige and commitment to excellence.' },
-            'client-logo-3': { name: 'Ambuja Cement', description: 'As a trusted partner, we have extensively utilized Ambuja Cement\'s high-strength products in our key infrastructure and high-rise projects, ensuring structural integrity and longevity. Their giant-like strength is a cornerstone of our quality construction.' },
-            'client-logo-4': { name: 'Tata Projects', description: 'Collaborated on large-scale infrastructure projects, providing expertise in construction management and execution for critical public works.' },
-            'client-logo-5': { name: 'Larsen & Toubro', description: 'As a key construction partner for L&T, we executed civil and infrastructure projects, adhering to the highest standards of engineering, safety, and timely project delivery.' },
-            'client-logo-6': { name: 'Godrej Properties', description: 'Constructed and designed interiors for Godrej\'s modern residential complexes in Rajasthan, focusing on sustainable building practices and green living concepts.' },
-            'client-logo-7': { name: 'Oberoi Realty', description: 'Entrusted with the development of high-end commercial spaces and luxury retail outlets that align with the Oberoi brand of sophistication and exclusivity.' },
-            'client-logo-8': { name: 'HSBC', description: 'Executed the turnkey interior project for HSBC\'s flagship branch in Jaipur, creating a secure, modern, and customer-friendly banking environment.' },
-            'client-logo-9': { name: 'Kotak Bank', description: 'Delivered multiple turnkey interior projects for Kotak Bank branches across Rajasthan, ensuring brand consistency and a professional ambiance.' },
-            'client-logo-10': { name: 'Lupin', description: 'Constructed state-of-the-art facilities for Lupin, including research labs and administrative buildings, meeting the precise requirements of the pharmaceutical industry.' },
-            'client-logo-11': { name: 'Infosys', description: 'Developed key infrastructure and office spaces for the Infosys campus, focusing on creating a world-class IT work environment.' },
-            'client-logo-12': { name: 'Wipro', description: 'Partnered with Wipro on their campus expansion, delivering modern office blocks and facilities designed to foster innovation and productivity.' }
-        };
-
-        function openClientDetails(clientKey) {
-            const data = clientData[clientKey];
-            if (!data) return;
-
-            const contentEl = document.getElementById('client-details-content');
-            const logoEl = document.querySelector(`img[data-key-img="${clientKey}"]`);
-            if (!logoEl) return;
-            const logoSrc = logoEl.src;
-            
-            contentEl.innerHTML = `
-                <img src="${logoSrc}" alt="${data.name} Logo" class="mx-auto max-h-20 mb-6 object-contain">
-                <h2 class="text-3xl font-display font-bold mb-4">${data.name}</h2>
-                <p class="text-text-muted">${data.description}</p>
-            `;
-            
-            openModal('client-details-modal');
-        }
-
         // -----------------------------------------------------------------------------
         // --- CORE UI & NAVIGATION ---
         // -----------------------------------------------------------------------------
@@ -755,9 +684,24 @@
             if (SUPABASE_URL && SUPABASE_ANON_KEY) {
                 dbClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 
+                // Fetch dynamic data only if galleries are empty
+                if (!document.getElementById('colonies-gallery').hasChildNodes()) {
+                     await fetchAndRenderGalleries();
+                } else {
+                    // if content is static, still run animations
+                     document.querySelectorAll('#projects .animate-on-scroll').forEach(el => {
+                        const observer = new IntersectionObserver((entries) => {
+                            if(entries[0].isIntersecting) {
+                                el.classList.add('is-visible');
+                                observer.unobserve(el);
+                            }
+                        }, {threshold: 0.1});
+                        observer.observe(el);
+                     });
+                }
+                
                 await Promise.all([
-                    fetchAndDisplayContent(), 
-                    fetchAndRenderGalleries(), 
+                    fetchAndDisplayContent(),
                     fetchAndBuildHeroSlideshow()
                 ]);
                 
@@ -768,6 +712,11 @@
                 console.warn("Supabase credentials not set. Site will be static.");
             }
             
+            // For static CSR slider
+            if(document.querySelectorAll("#csr-slider-wrapper .csr-slide").length > 0) {
+                showSlides(1);
+            }
+
             setupEventListeners();
             initializePageAnimations();
             showPage('home');
@@ -807,23 +756,19 @@
             if (error) return console.error('Error fetching content:', error);
             
             data.forEach(item => {
-                const elements = document.querySelectorAll(`[data-key="${item.id}"]`);
-                 elements.forEach(el => {
-                     el.innerHTML = item.content;
-                });
-                
-                const imgElements = document.querySelectorAll(`[data-key-img="${item.id}"]`);
-                imgElements.forEach(el => {
-                    if (item.type === 'image') {
-                        const innerImg = el.querySelector('img');
-                        if (innerImg) { // This is our new logo structure
-                             innerImg.src = item.content;
-                        } else if (el.tagName === 'IMG') { // Legacy for other images if they exist
-                           el.src = item.content;
-                        } else { // For background images
+                const elements = document.querySelectorAll(`[data-key="${item.id}"], [data-key-img="${item.id}"]`);
+                elements.forEach(el => {
+                    if (item.type === 'text') {
+                        el.innerHTML = item.content;
+                    } else if (item.type === 'image') {
+                        if (el.tagName === 'IMG' && !el.src) { // Only update if src is empty
+                            el.src = item.content;
+                        } else if (el.tagName !== 'IMG') {
                             const currentStyle = el.style.backgroundImage || '';
-                            const gradient = currentStyle.startsWith('linear-gradient') ? currentStyle.substring(0, currentStyle.indexOf('url(')) : '';
-                            el.style.backgroundImage = `${gradient}url('${item.content}')`;
+                            // Only update if no bg image is set
+                            if (!currentStyle.includes('url(')) {
+                                el.style.backgroundImage = `url('${item.content}')`;
+                            }
                         }
                     }
                 });
@@ -944,32 +889,15 @@
 
         async function handleAdminLogin(e) {
             e.preventDefault();
-            const loginBtn = e.target.querySelector('button[type="submit"]');
-            const loginErrorEl = document.getElementById('login-error');
-            
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging In...';
-            loginErrorEl.classList.add('hidden');
-            
-            try {
-                const email = document.getElementById('admin-email').value;
-                const password = document.getElementById('admin-password').value;
-                const { data, error } = await dbClient.auth.signInWithPassword({ email, password });
-
-                if (error) {
-                    loginErrorEl.textContent = error.message;
-                    loginErrorEl.classList.remove('hidden');
-                } else { 
-                    closeModal('admin-login-modal');
-                    enableAdminMode(); 
-                }
-            } catch (err) {
-                console.error('An error occurred during login:', err);
-                loginErrorEl.textContent = 'An unexpected error occurred. Please try again.';
-                loginErrorEl.classList.remove('hidden');
-            } finally {
-                loginBtn.disabled = false;
-                loginBtn.innerHTML = 'Login';
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+            const { data, error } = await dbClient.auth.signInWithPassword({ email, password });
+            if (error) {
+                document.getElementById('login-error').textContent = error.message;
+                document.getElementById('login-error').classList.remove('hidden');
+            } else { 
+                closeModal('admin-login-modal');
+                enableAdminMode(); 
             }
         }
 
@@ -990,7 +918,7 @@
             document.querySelectorAll('[data-key-img]').forEach(el => {
                 el.addEventListener('click', handleSingleImageEdit);
                 const removeBtn = document.createElement('button');
-                removeBtn.innerHTML = '&times;';
+                removeBtn.innerHTML = '×';
                 removeBtn.className = 'remove-cover-btn';
                 removeBtn.onclick = removeCurrentImage;
                 el.appendChild(removeBtn);
@@ -1043,21 +971,14 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 updates.push({ id: el.dataset.key, content: el.innerHTML, type: 'text' });
             });
-            
             document.querySelectorAll('[data-key-img]').forEach(el => {
                 let url = '';
-                const innerImg = el.querySelector('img');
-
-                if (innerImg) { // For elements containing an img, like the logo
-                    url = innerImg.src;
-                } else if (el.tagName === 'IMG') { // For elements that are the img itself
+                if(el.tagName === 'IMG') {
                     url = el.src;
-                } else if (el.style.backgroundImage.includes('url')) { // For background images
-                    const match = el.style.backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
-                    if (match) url = match[2];
+                } else if (el.style.backgroundImage) {
+                    url = el.style.backgroundImage.slice(5, -2).replace(/"/g, ""); // Clean URL string
                 }
-                
-                if (url && !url.includes('placehold.co')) {
+                if (url) {
                     updates.push({ id: el.dataset.keyImg, content: url, type: 'image' });
                 }
             });
@@ -1120,14 +1041,8 @@
             const { type, element, gallery_key, id, projectId } = _uploadContext;
 
             if (type === 'single') {
-                const innerImg = element.querySelector('img');
-                if (innerImg) {
-                    innerImg.src = successfulUrls[0];
-                } else if (element.tagName === 'IMG') {
-                     element.src = successfulUrls[0];
-                } else {
-                    element.style.backgroundImage = `url('${successfulUrls[0]}')`;
-                }
+                if (element.tagName === 'IMG') element.src = successfulUrls[0];
+                else element.style.backgroundImage = `url('${successfulUrls[0]}')`;
             } else if (type === 'addGallery') {
                  if (gallery_key === 'csr') {
                     if (successfulUrls.length > 0) {
@@ -1173,10 +1088,7 @@
             const parentEl = event.target.parentElement;
             const placeholderUrl = 'https://placehold.co/800x600/f1f5f9/cbd5e1?text=No+Image';
 
-            const innerImg = parentEl.querySelector('img');
-            if (innerImg) {
-                innerImg.src = placeholderUrl;
-            } else if (parentEl.tagName === 'IMG') {
+            if (parentEl.tagName === 'IMG') {
                 parentEl.src = placeholderUrl;
             } else {
                 const currentStyle = parentEl.style.backgroundImage || '';
@@ -1200,7 +1112,7 @@
             grid.innerHTML = '<div class="spinner"></div>';
             const { data, error } = await dbClient.from('hero_images').select('*');
             if (error || !data) { grid.innerHTML = 'Could not load images.'; return; }
-            grid.innerHTML = data.map(img => `<label class="manager-item"><input type="checkbox" class="absolute hidden" value="${img.id}" ${img.is_active ? 'checked' : ''}><img src="${img.image_url}"><button class="delete-btn" onclick="deleteHeroImage(event, ${img.id})">&times;</button></label>`).join('');
+            grid.innerHTML = data.map(img => `<label class="manager-item"><input type="checkbox" class="absolute hidden" value="${img.id}" ${img.is_active ? 'checked' : ''}><img src="${img.image_url}"><button class="delete-btn" onclick="deleteHeroImage(event, ${img.id})">×</button></label>`).join('');
         }
         async function saveHeroSelection() { 
             const updates = Array.from(document.querySelectorAll('#hero-manager-grid input')).map(i => ({ id: i.value, is_active: i.checked }));
@@ -1217,6 +1129,7 @@
 
         // --- PROJECT DETAILS & IMAGE MANAGER ---
         async function openProjectDetails(projectId) {
+            if (projectId === 0) return; // Prevent error on static placeholders
             const { data: project, error: projectError } = await dbClient.from('gallery_images').select('*').eq('id', projectId).single();
             const { data: images, error: imagesError } = await dbClient.from('project_additional_images').select('image_url').eq('project_id', projectId);
 
@@ -1229,7 +1142,7 @@
                 <div class="project-detail-slide" style="display: ${index === 0 ? 'block' : 'none'};">
                     <img src="${url}" alt="${project.title} image ${index + 1}">
                 </div>
-            `).join('') + (allImages.length > 1 ? `<a class="prev" onclick="plusProjectSlides(-1)">&#10094;</a><a class="next" onclick="plusProjectSlides(1)">&#10095;</a>` : '');
+            `).join('') + (allImages.length > 1 ? `<a class="prev" onclick="plusProjectSlides(-1)">❮</a><a class="next" onclick="plusProjectSlides(1)">❯</a>` : '');
 
             const info = document.getElementById('project-details-info');
             info.innerHTML = `<h2 class="text-3xl font-bold font-display">${project.title}</h2>
@@ -1268,7 +1181,7 @@
             grid.innerHTML = '<div class="spinner"></div>';
             const { data } = await dbClient.from('project_additional_images').select('*').eq('project_id', projectId);
             if (!data) { grid.innerHTML = 'Could not load images.'; return; }
-            grid.innerHTML = data.map(img => `<div class="manager-item"><img src="${img.image_url}"><button class="delete-btn" onclick="deleteProjectImage(${img.id}, ${projectId})">&times;</button></div>`).join('');
+            grid.innerHTML = data.map(img => `<div class="manager-item"><img src="${img.image_url}"><button class="delete-btn" onclick="deleteProjectImage(${img.id}, ${projectId})">×</button></div>`).join('');
         }
         
         async function deleteProjectImage(imageId, projectId) {
@@ -1375,7 +1288,7 @@
                 if (pageId === 'home') {
                     const heroTitle = page.querySelector('.hero-title');
                     if (heroTitle && heroTitle.textContent) {
-                        heroTitle.innerHTML = heroTitle.textContent.trim().split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+                        heroTitle.innerHTML = heroTitle.textContent.trim().split('').map(c => `<span>${c === ' ' ? ' ' : c}</span>`).join('');
                         setTimeout(() => {
                             heroTitle.classList.add('is-visible');
                             heroTitle.querySelectorAll('span').forEach((s, i) => s.style.transitionDelay = `${i * 30}ms`);
@@ -1422,5 +1335,3 @@
     </script>
 </body>
 </html>
-
-
