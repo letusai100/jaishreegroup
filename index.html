@@ -5,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jai Shree Group - Premium Real Estate & Interiors</title>
     
-    <!-- Supabase JavaScript Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Root CSS Variables for easy theme management --- */
         :root {
             --bg-light: #fdfdfd;
             --bg-alt: #f1f5f9;
@@ -34,8 +29,7 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
         h1, h2, h3, h4, .font-display { font-family: 'Playfair Display', serif; color: var(--primary-dark); }
         
-        /* --- Admin-mode styles --- */
-        /* These styles activate when the admin is logged in, providing visual cues for editable elements */
+        /* Admin-mode styles */
         .admin-edit-mode [data-key] { outline: 2px dashed var(--teal); outline-offset: 4px; cursor: text; transition: outline 0.2s, background-color 0.2s; }
         .admin-edit-mode [data-key]:hover { outline-color: var(--gold); background-color: #f0fdfa; }
         .admin-edit-mode [data-key-img], .admin-edit-mode .gallery-item .relative { position: relative; cursor: pointer; }
@@ -54,7 +48,7 @@
         }
         .admin-edit-mode [data-key-img]:hover .remove-cover-btn { display: block; }
 
-        /* --- General Styling --- */
+
         .text-gold { color: var(--gold); } .bg-gold { background-color: var(--gold); } .bg-primary-dark { background-color: var(--primary-dark); } .text-teal { color: var(--teal); }
 
         .nav-link { position: relative; transition: color 0.3s; }
@@ -62,27 +56,23 @@
         .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         
-        /* --- Page transition styles --- */
         .page-section { display: none; }
         .page-section.active { display: block; animation: fadeIn 0.8s ease-in-out; }
         
-        /* --- Hero section slideshow styles --- */
         .hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out, transform 6s linear; z-index: 1; transform: scale(1.1); }
         .hero-slide.active { opacity: 1; transform: scale(1); }
 
-        /* --- Modal (Popup) styles --- */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-content { background: white; padding: 2rem; border-radius: 0.5rem; max-width: 600px; width: 90%; position: relative; transform: translateY(-20px); transition: all 0.3s; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .modal-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; color: #9ca3af; z-index: 20; }
         
-        /* --- Loading spinner --- */
         .spinner { width: 56px; height: 56px; border: 5px solid var(--teal); border-bottom-color: transparent; border-radius: 50%; display: inline-block; animation: rotation 1s linear infinite; }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* --- Animation classes for scroll effects --- */
+        /* Animation Classes */
         .animate-on-scroll { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .animate-on-scroll.is-visible { opacity: 1; transform: none !important; }
         .animate-fade-in-up { transform: translateY(50px); }
@@ -96,7 +86,7 @@
         #scroll-to-top { position: fixed; bottom: -100px; right: 40px; width: 50px; height: 50px; background-color: var(--gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 100; transition: all 0.5s; }
         #scroll-to-top.visible { bottom: 120px; }
         
-        /* --- Styles for Image Management Modals --- */
+        /* Modals for Image Management */
         #upload-modal .modal-content, #project-details-modal .modal-content { max-width: 500px; }
         #drop-zone { border: 3px dashed #ccc; border-radius: 0.5rem; padding: 3rem 1rem; text-align: center; transition: all 0.2s; }
         #drop-zone.drag-over { border-color: var(--teal); background-color: #f0fdfa; }
@@ -109,7 +99,7 @@
         .manager-item .delete-btn { position: absolute; top: 0.5rem; right: 0.5rem; background-color: #1a202c; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 14px; cursor: pointer; opacity: 0; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; }
         .manager-item:hover .delete-btn { opacity: 1; }
 
-        /* --- Project Details Slider --- */
+        /* Project Details Slider */
         #project-details-modal .modal-content { max-width: 800px; padding: 0; }
         #project-details-slider { position: relative; }
         .project-detail-slide { display: none; }
@@ -121,7 +111,7 @@
         #project-details-slider .prev { left: 1rem; }
         #project-details-slider .next { right: 1rem; }
         
-        /* --- CSR Slider Arrow Fix --- */
+        /* CSR Slider Arrow Fix */
         #csr-slider-wrapper .prev, #csr-slider-wrapper .next {
             cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; color: white; font-weight: bold; font-size: 20px; transition: 0.6s ease; border-radius: 50%; user-select: none; background-color: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 10;
         }
@@ -129,7 +119,7 @@
         #csr-slider-wrapper .next { right: 16px; }
         #csr-slider-wrapper .csr-slide { display: none; }
         
-        /* --- Chat Assistant Styles --- */
+        /* Chat Assistant Styles */
         #chat-assistant { position: fixed; bottom: 40px; right: 110px; z-index: 100; }
         #chat-assistant-icon { width: 60px; height: 60px; background: linear-gradient(45deg, var(--teal), var(--primary-dark)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 2px 2px 8px rgba(0,0,0,0.4); }
         #chat-box { position: absolute; bottom: 80px; right: 0; width: 350px; max-height: 80vh; background: white; border-radius: 1rem; box-shadow: 0 5px 25px rgba(0,0,0,0.2); transform-origin: bottom right; transition: all 0.3s; transform: scale(0); opacity: 0; display: flex; flex-direction: column; }
@@ -150,10 +140,8 @@
         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
         @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* --- Floating Action Buttons --- */
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4); z-index: 100; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
         
-        /* --- Tab Styles --- */
         .portfolio-tab, .interior-tab {
             padding: 0.5rem 1.5rem;
             border-radius: 9999px;
@@ -177,7 +165,7 @@
         .portfolio-tab-content, .interior-tab-content { display: none; }
         .portfolio-tab-content.active, .interior-tab-content.active { display: grid; animation: fadeIn 0.5s; }
 
-        /* --- Responsive Design --- */
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; line-height: 1.1; } h2 { font-size: 2rem; }
             .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 24px; }
@@ -191,10 +179,8 @@
 </head>
 <body class="bg-white text-text-dark">
     
-    <!-- Hidden file input used by the image upload modals -->
     <input type="file" id="image-uploader" class="hidden" accept="image/*" multiple>
 
-    <!-- Admin Panel - shows at the bottom when logged in -->
     <div id="admin-panel" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-[1001] bg-primary-dark text-white p-4 rounded-lg shadow-2xl flex items-center gap-4">
         <p class="font-bold">Admin Mode</p>
         <button id="save-changes-btn" class="bg-teal hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-md">
@@ -204,12 +190,10 @@
         <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">Logout</button>
     </div>
 
-    <!-- Admin Login Modal -->
     <div id="admin-login-modal" class="modal-overlay">
         <div class="modal-content"><h2 class="text-3xl font-display font-bold mb-4">Admin Login</h2><form id="admin-login-form"><div class="mb-4"><label for="admin-email" class="block font-semibold mb-2">Email</label><input type="email" id="admin-email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gold" required></div><div class="mb-4"><label for="admin-password" class="block font-semibold mb-2">Password</label><input type="password" id="admin-password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gold" required></div><button type="submit" class="w-full bg-primary-dark text-white font-bold py-3 px-4 rounded-md hover:bg-gold transition-colors">Login</button><p id="login-error" class="text-red-500 text-sm mt-4 text-center hidden"></p></form></div>
     </div>
     
-    <!-- Universal Image Upload Modal -->
     <div id="upload-modal" class="modal-overlay" onclick="closeModal('upload-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('upload-modal')"></i>
@@ -221,7 +205,6 @@
         </div>
     </div>
     
-    <!-- Modal to manage images in the home page hero slideshow -->
     <div id="hero-manager-modal" class="modal-overlay" onclick="closeModal('hero-manager-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('hero-manager-modal')"></i>
@@ -236,8 +219,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- Modal to manage additional images for a specific project -->
+
      <div id="project-images-manager-modal" class="modal-overlay" onclick="closeModal('project-images-manager-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('project-images-manager-modal')"></i>
@@ -252,7 +234,6 @@
         </div>
     </div>
     
-    <!-- Modal to show project details with a slider -->
     <div id="project-details-modal" class="modal-overlay" onclick="closeModal('project-details-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
             <i class="fas fa-times modal-close" onclick="closeModal('project-details-modal')"></i>
@@ -261,11 +242,9 @@
         </div>
     </div>
 
-    <!-- Header and Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- The logo is an editable image -->
-            <a href="#" onclick="showPage('home')"><img data-key-img="logo" src="https://placehold.co/200x80/ffffff/1a202c?text=JSG" alt="Jai Shree Group Logo" class="h-20 w-auto"></a>
+            <a href="#" onclick="showPage('home')"><img data-key-img="logo" src="" alt="Jai Shree Group Logo" class="h-20 w-auto"></a>
             <div class="hidden md:flex items-center space-x-8" id="nav-links">
                 <a href="#" onclick="showPage('home')" class="nav-link active">Home</a>
                 <a href="#" onclick="showPage('about')" class="nav-link">About Us</a>
@@ -277,7 +256,6 @@
             </div>
             <button id="mobile-menu-button" class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
         </nav>
-        <!-- Mobile navigation menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
              <a href="#" onclick="showPage('home'); closeMenu();" class="block py-2">Home</a>
              <a href="#" onclick="showPage('about'); closeMenu();" class="block py-2">About Us</a>
@@ -290,15 +268,13 @@
     </header>
 
     <main>
-        <!-- Home Page Section -->
         <section id="home" class="page-section active">
             <div class="relative h-[80vh] flex items-center justify-center text-center text-white overflow-hidden">
                 <div id="hero-slideshow" class="absolute top-0 left-0 w-full h-full">
-                     <!-- Hero slides will be dynamically inserted here by JavaScript -->
-                </div>
+                     </div>
                 <div class="relative z-10 px-6">
-                    <h1 class="text-4xl md:text-6xl font-bold font-display text-white hero-title" data-key="hero-title">Building Dreams, Creating Futures</h1>
-                    <p class="mt-4 text-xl" data-key="hero-subtitle">Rajasthan's Most Trusted Name in Real Estate & Interiors Since 1980</p>
+                    <h1 class="text-4xl md:text-6xl font-bold font-display text-white hero-title" data-key="hero-title"></h1>
+                    <p class="mt-4 text-xl" data-key="hero-subtitle"></p>
                     <div class="admin-hero-controls justify-center mt-8">
                         <button class="bg-gold text-white font-bold py-2 px-6 rounded-md" onclick="openHeroManager()">Manage Slideshow</button>
                     </div>
@@ -308,20 +284,20 @@
             <div class="py-20 bg-gray-50">
                 <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8">
                     <a href="#" onclick="showPage('projects', 'real-estate')" class="group block relative h-96 rounded-lg overflow-hidden shadow-2xl">
-                         <div class="absolute inset-0 bg-center transition-transform duration-500 group-hover:scale-110" data-key-img="gateway-img-1" style="background-image: url('https://placehold.co/800x600/1a202c/FFF?text=Real+Estate');"></div>
+                         <div class="absolute inset-0 bg-center transition-transform duration-500 group-hover:scale-110" data-key-img="gateway-img-1" style=""></div>
                          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                              <div class="text-center text-white p-4">
-                                <h2 class="text-4xl font-display text-white" style="color: var(--gold);" data-key="gateway-title-1">Real Estate</h2>
-                                <p class="text-xl mt-2" data-key="gateway-subtitle-1">Discover Our Landmark Properties</p>
+                                <h2 class="text-4xl font-display text-white" style="color: var(--gold);" data-key="gateway-title-1"></h2>
+                                <p class="text-xl mt-2" data-key="gateway-subtitle-1"></p>
                             </div>
                         </div>
                     </a>
                     <a href="#" onclick="showPage('projects', 'interiors')" class="group block relative h-96 rounded-lg overflow-hidden shadow-2xl">
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-key-img="gateway-img-2" style="background-image: url('https://placehold.co/800x600/c09a3e/FFF?text=Interiors');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-key-img="gateway-img-2" style=""></div>
                          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                              <div class="text-center text-white p-4">
-                                <h2 class="text-4xl font-display text-white" style="color: var(--gold);" data-key="gateway-title-2">Interior Design</h2>
-                                <p class="text-xl mt-2" data-key="gateway-subtitle-2">Crafting Spaces, Inspiring Life</p>
+                                <h2 class="text-4xl font-display text-white" style="color: var(--gold);" data-key="gateway-title-2"></h2>
+                                <p class="text-xl mt-2" data-key="gateway-subtitle-2"></p>
                             </div>
                         </div>
                     </a>
@@ -330,147 +306,303 @@
 
             <section class="py-20 bg-white">
                 <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="why-choose-title">Why Choose Jai Shree Group?</h2>
+                    <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="why-choose-title"></h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="0">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-trophy"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-1-title">40+ Years of Trust</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-1-text">A legacy of excellence and integrity since 1980.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-1-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-1-text"></p>
                         </div>
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="200">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-check-circle"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-2-title">Unmatched Quality</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-2-text">Commitment to the highest standards of construction and design.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-2-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-2-text"></p>
                         </div>
                         <div class="animate-on-scroll animate-fade-in-up" data-delay="400">
                             <div class="bg-gold text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto text-3xl mb-4"><i class="fas fa-users"></i></div>
-                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-3-title">Client-Centric Approach</h3>
-                            <p class="text-text-muted mt-2" data-key="why-choose-3-text">Your vision is our blueprint. We build lasting relationships.</p>
+                            <h3 class="text-2xl font-bold font-display" data-key="why-choose-3-title"></h3>
+                            <p class="text-text-muted mt-2" data-key="why-choose-3-text"></p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Testimonials Section -->
             <section class="py-20 bg-alt">
-                <!-- Content is editable via data-key attributes -->
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl font-bold font-display mb-4 animate-on-scroll animate-fade-in-up" data-key="testimonials-title"></h2>
+                    <p class="text-text-muted mb-12 max-w-2xl mx-auto animate-on-scroll animate-fade-in-up" data-delay="200" data-key="testimonials-subtitle"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-lg text-left shadow-lg animate-on-scroll animate-fade-in-up" data-delay="0">
+                            <i class="fas fa-quote-left text-gold text-4xl mb-4"></i>
+                            <p class="text-text-dark italic" data-key="testimonial-1-text"></p>
+                            <div class="mt-6 pt-6 border-t">
+                                <h4 class="font-bold text-primary-dark" data-key="testimonial-1-name"></h4>
+                                <p class="text-sm text-gold" data-key="testimonial-1-role"></p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg text-left shadow-lg animate-on-scroll animate-fade-in-up" data-delay="200">
+                            <i class="fas fa-quote-left text-gold text-4xl mb-4"></i>
+                             <p class="text-text-dark italic" data-key="testimonial-2-text"></p>
+                            <div class="mt-6 pt-6 border-t">
+                                <h4 class="font-bold text-primary-dark" data-key="testimonial-2-name"></h4>
+                                <p class="text-sm text-gold" data-key="testimonial-2-role"></p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg text-left shadow-lg animate-on-scroll animate-fade-in-up" data-delay="400">
+                             <i class="fas fa-quote-left text-gold text-4xl mb-4"></i>
+                             <p class="text-text-dark italic" data-key="testimonial-3-text"></p>
+                            <div class="mt-6 pt-6 border-t">
+                                <h4 class="font-bold text-primary-dark" data-key="testimonial-3-name"></h4>
+                                <p class="text-sm text-gold" data-key="testimonial-3-role"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <!-- Counter Section -->
             <div id="counter-section" class="bg-white py-16">
-                 <!-- Content is editable via data-key attributes -->
+                <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div><i class="fas fa-home text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-1-value" data-target="700">0</p><p class="text-text-muted" data-key="stats-1-label"></p></div>
+                    <div><i class="fas fa-ruler-combined text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-2-value" data-target="75">0</p><p class="text-text-muted" data-key="stats-2-label"></p></div>
+                    <div><i class="fas fa-hard-hat text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-3-value" data-target="600">0</p><p class="text-text-muted" data-key="stats-3-label"></p></div>
+                    <div><i class="fas fa-calendar-alt text-4xl text-teal mb-3"></i><p class="text-4xl font-bold text-primary-dark" data-key="stats-4-value" data-target="40">0</p><p class="text-text-muted" data-key="stats-4-label"></p></div>
+                </div>
             </div>
         </section>
 
-        <!-- About Us Page Section -->
         <section id="about" class="page-section py-20">
-             <!-- All text content in this section is editable via data-key attributes -->
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="animate-on-scroll animate-slide-in-left">
+                        <h2 class="text-4xl font-bold font-display" data-key="about-title">The Jai Shree Group Story</h2>
+                        <p class="mt-4 text-text-muted" data-key="about-p1">Founded on the principles of integrity and quality, Jai Shree Group began its journey in 1980 with a vision to redefine the real estate landscape of Rajasthan. From humble beginnings in residential plotting, we have grown into a diversified powerhouse, delivering landmark residential and commercial projects that shape the skyline.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-p2">Our expansion into turnkey interiors was a natural evolution, driven by our desire to provide holistic, end-to-end solutions for our discerning clientele. Our success is built on a foundation of trust with our clients, partners, and community.</p>
+                        <h3 class="text-3xl font-bold font-display mt-8" data-key="about-mission-title">Our Mission & Vision</h3>
+                        <p class="mt-4 text-text-muted" data-key="about-mission-text"><b>Our Mission:</b> To deliver superior quality construction and design solutions that exceed client expectations, while upholding the highest standards of ethics and sustainability.</p>
+                        <p class="mt-4 text-text-muted" data-key="about-vision-text"><b>Our Vision:</b> To be India’s most trusted and innovative real estate and interiors group, renowned for creating lasting value and iconic landmarks.</p>
+                        <button onclick="openModal('director-modal')" class="mt-8 bg-primary-dark text-white font-bold py-3 px-6 rounded-md hover:bg-gold">Meet The Founder</button>
+                    </div>
+                    <div id="timeline" class="animate-on-scroll animate-slide-in-right">
+                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-flag"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">1980 - The Beginning</h3><p class="text-text-muted">Jai Shree Group is founded, starting with residential plotting projects.</p></div></div>
+                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-building"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">1995 - Expansion</h3><p class="text-text-muted">Expanded into constructing luxury flats and commercial properties.</p></div></div>
+                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-couch"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">2005 - Interiors Division</h3><p class="text-text-muted">Launched a full-service interior design wing to offer turnkey solutions.</p></div></div>
+                        <div class="timeline-item"><div class="timeline-dot"><i class="fas fa-star"></i></div><div class="timeline-content"><h3 class="text-xl font-bold">2024 - A Trusted Name</h3><p class="text-text-muted">Recognized as a leading name with over 700 successful projects.</p></div></div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <h2 class="text-4xl font-bold font-display mb-12 animate-on-scroll animate-fade-in-up" data-key="values-title">Our Core Values</h2>
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-gem text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-1-title">Quality</h3><p class="text-text-muted mt-2" data-key="value-1-text">Delivering excellence and superior craftsmanship in every detail is the hallmark of our work.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-handshake text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="value-2-title">Integrity</h3><p class="text-text-muted mt-2" data-key="value-2-text">We conduct our business with the highest levels of honesty, transparency, and ethical standards.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-lightbulb text-4xl text-teal"></i><h3 class="text-2xl font-bold font-display mt-4" data-key="value-3-title">Innovation</h3><p class="text-text-muted mt-2" data-key="value-3-text">Continuously embracing new ideas and technologies to build smarter, more sustainable spaces for the future.</p></div>
+                    </div>
+                </div>
+            </div>
         </section>
         
-        <!-- Services Page Section -->
         <section id="services" class="page-section py-20 bg-alt">
-             <!-- All text and image content in this section is editable via data-key attributes -->
-        </section>
-
-        <!-- Projects Page Section -->
-        <section id="projects" class="page-section py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 animate-on-scroll animate-fade-in-up">
-                    <h1 class="text-5xl font-bold font-display" data-key="projects-title">Our Projects</h1>
-                    <p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="projects-subtitle">A testament to our commitment to quality, innovation, and architectural excellence across India.</p>
+                     <h1 class="text-5xl font-bold font-display" data-key="services-title">Our Services</h1>
+                     <p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="services-subtitle">Comprehensive solutions in real estate and interior design, tailored to your needs.</p>
                 </div>
-                <!-- Real Estate Projects -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animate-on-scroll animate-slide-in-left"><img data-key-img="services-img-1" src="https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Real Estate Services" class="rounded-lg shadow-xl"></div>
+                    <div class="animate-on-scroll animate-slide-in-right">
+                        <h2 class="text-4xl font-bold font-display" data-key="services-1-title">Real Estate Development</h2>
+                        <p class="text-text-muted mt-4 text-lg" data-key="services-1-p">We specialize in a wide range of real estate services, ensuring quality and timely delivery for every project.</p>
+                        <ul class="mt-6 space-y-3 text-lg">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li1"><strong>Residential & Commercial Construction:</strong> Building modern homes and state-of-the-art commercial spaces.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li2"><strong>Colony & Township Development:</strong> Creating vibrant, well-planned communities from the ground up.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-1-li3"><strong>Infrastructure Projects:</strong> Expertise in road construction and other large-scale civil engineering works.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center mt-20">
+                     <div class="md:order-2 animate-on-scroll animate-slide-in-right"><img data-key-img="services-img-2" src="" alt="Interior Design Services" class="rounded-lg shadow-xl"></div>
+                    <div class="md:order-1 animate-on-scroll animate-slide-in-left">
+                        <h2 class="text-4xl font-bold font-display" data-key="services-2-title">Turnkey Interior Solutions</h2>
+                        <p class="text-text-muted mt-4 text-lg" data-key="services-2-p">Our interior design division, Jai Shree Interiors, offers end-to-end solutions to transform your space.</p>
+                        <ul class="mt-6 space-y-3 text-lg">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li1"><strong>Residential Interiors:</strong> Crafting beautiful and functional interiors for flats, houses, and villas.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li2"><strong>Commercial & Institutional Interiors:</strong> Designing innovative spaces for offices, hospitals, universities, and retail.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-teal mt-1 mr-3"></i><span data-key="services-2-li3"><strong>Complete Turnkey Projects:</strong> From concept to completion, we manage every aspect of your interior project.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="page-section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="projects-title">Our Projects</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="projects-subtitle">A testament to our commitment to quality, innovation, and architectural excellence across India.</p></div>
                 <div id="real-estate" class="portfolio-category mb-16">
                     <h2 class="text-3xl font-bold font-display mb-8 text-center animate-on-scroll animate-fade-in-up" data-key="project-re-title">Real Estate Projects</h2>
-                    <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up">
-                        <button class="portfolio-tab active" data-key="project-tab-colonies" onclick="showTab(event, 'colonies')">Colonies</button>
-                        <button class="portfolio-tab" data-key="project-tab-residential" onclick="showTab(event, 'residential')">Residential</button>
-                        <button class="portfolio-tab" data-key="project-tab-commercial" onclick="showTab(event, 'commercial')">Commercial</button>
-                    </div>
-                    <!-- Colonies Gallery -->
+                    <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up"><button class="portfolio-tab active" data-key="project-tab-colonies" onclick="showTab(event, 'colonies')">Colonies</button><button class="portfolio-tab" data-key="project-tab-residential" onclick="showTab(event, 'residential')">Residential</button><button class="portfolio-tab" data-key="project-tab-commercial" onclick="showTab(event, 'commercial')">Commercial</button></div>
                     <div id="colonies" class="portfolio-tab-content active">
                         <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-col')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Colony Project</button></div>
                         <div id="colonies-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                            <!-- Projects will be dynamically loaded here -->
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Anandam+Vihar" alt="Anandam Vihar" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Anandam Vihar</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A premium plotted development offering a serene and green living environment with modern amenities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Royal+City" alt="Royal City" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Royal City</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An expansive township project that combines traditional aesthetics with contemporary infrastructure.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=Green+Valley" alt="Green Valley" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Green Valley</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Udaipur, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Nestled near the Aravalli hills, this colony offers picturesque views and a tranquil lifestyle.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/1a202c/FFF?text=JSG+Enclave" alt="JSG Enclave" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Enclave</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Ajmer, Rajasthan</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A well-planned residential colony with robust infrastructure and community facilities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
                         </div>
                     </div>
-                    <!-- Residential Gallery -->
-                    <div id="residential" class="portfolio-tab-content">
-                        <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Project</button></div>
+                    <div id="residential" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Project</button></div>
                         <div id="residential-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                             <!-- Projects will be dynamically loaded here -->
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Elegance+Towers" alt="Elegance Towers" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Elegance Towers</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Vaishali Nagar, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Luxury apartments with world-class amenities and premium finishes.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Serene+Villas" alt="Serene Villas" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Serene Villas</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Udaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Exclusive independent villas offering privacy and comfort.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=The+Address" alt="The Address" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">The Address</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Civil Lines, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">High-end residential flats in a prime urban location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=JSG+Heights" alt="JSG Heights" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Heights</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Affordable housing with modern design and essential facilities.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Lakeview+Apartments" alt="Lakeview Apartments" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Lakeview Apartments</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bhopal</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern living spaces with scenic views of the upper lake.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Urban+Residency" alt="Urban Residency" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Urban Residency</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Gurgaon</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Contemporary homes designed for the modern metropolitan family.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Heritage+Homes" alt="Heritage Homes" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Heritage Homes</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pushkar</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Residences that blend traditional architecture with modern comforts.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/2d3748/FFF?text=Skyline+Flats" alt="Skyline Flats" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Skyline Flats</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Compact and efficient apartments in a bustling city location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
                         </div>
                     </div>
-                    <!-- Commercial Gallery -->
-                    <div id="commercial" class="portfolio-tab-content">
-                        <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Project</button></div>
+                    <div id="commercial" class="portfolio-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Project</button></div>
                         <div id="commercial-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- Projects will be dynamically loaded here -->
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Corporate+Plaza" alt="Corporate Plaza" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Corporate Plaza</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>C-Scheme, Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A landmark business center with state-of-the-art office spaces.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=JSG+Business+Hub" alt="JSG Business Hub" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">JSG Business Hub</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pune</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern commercial complex designed for IT and corporate offices.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Orion+Mall" alt="Orion Mall" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Orion Mall</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Indore</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A premier shopping and entertainment destination with diverse retail spaces.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Trade+Tower" alt="Trade Tower" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Trade Tower</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Ahmedabad</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An iconic commercial tower offering premium office and retail units.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=City+Center" alt="City Center" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">City Center</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Kota</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A mixed-use development featuring shops, offices, and restaurants.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/718096/FFF?text=Apex+Hotel" alt="Apex Hotel" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Apex Hotel</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Goa</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Construction of a luxury boutique hotel in a prime tourist location.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
                         </div>
                     </div>
                 </div>
-                <!-- Interior Design Projects -->
                 <div id="interiors" class="portfolio-category">
                      <h2 class="text-3xl font-bold font-display mb-8 text-center animate-on-scroll animate-fade-in-up" data-key="project-int-title">Interior Design Projects</h2>
-                     <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up">
-                        <button class="interior-tab active" data-key="project-tab-int-res" onclick="showInteriorTab(event, 'residential-int')">Residential</button>
-                        <button class="interior-tab" data-key="project-tab-int-com" onclick="showInteriorTab(event, 'commercial-int')">Commercial</button>
-                    </div>
-                    <!-- Residential Interiors Gallery -->
-                    <div id="residential-int" class="interior-tab-content active">
-                        <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Interior</button></div>
+                     <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 animate-on-scroll animate-fade-in-up"><button class="interior-tab active" data-key="project-tab-int-res" onclick="showInteriorTab(event, 'residential-int')">Residential</button><button class="interior-tab" data-key="project-tab-int-com" onclick="showInteriorTab(event, 'commercial-int')">Commercial</button></div>
+                    <div id="residential-int" class="interior-tab-content active"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-res')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Residential Interior</button></div>
                         <div id="residential-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- Projects will be dynamically loaded here -->
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Modern+Villa" alt="Modern Villa" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Modern Villa Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A complete turnkey interior solution for a luxury villa.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Penthouse+Design" alt="Penthouse Design" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Penthouse Design</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Chic and contemporary interiors for a high-rise penthouse.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Classic+Apartment" alt="Classic Apartment" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Classic Apartment</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Delhi</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Elegant and timeless interior design for a 3BHK flat.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Minimalist+Home" alt="Minimalist Home" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Minimalist Home</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bangalore</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Clean lines and a neutral palette define this modern home.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Farmhouse+Retreat" alt="Farmhouse Retreat" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Farmhouse Retreat</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Lonavala</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Rustic and cozy interiors for a weekend getaway home.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Duplex+Makeover" alt="Duplex Makeover" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Duplex Makeover</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Hyderabad</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Complete renovation and interior styling for a duplex house.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Studio+Apartment" alt="Studio Apartment" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Studio Apartment</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Pune</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Smart and functional design for a compact living space.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/c09a3e/FFF?text=Royal+Haveli" alt="Royal Haveli" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Royal Haveli Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jodhpur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Restoration and interior design with a traditional Rajasthani touch.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
                         </div>
                     </div>
-                    <!-- Commercial Interiors Gallery -->
-                    <div id="commercial-int" class="interior-tab-content">
-                        <div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Interior</button></div>
+                    <div id="commercial-int" class="interior-tab-content"><div class="admin-gallery-controls justify-center mb-8"><button onclick="openUploadModal('project-int-com')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add Commercial Interior</button></div>
                         <div id="commercial-int-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                           <!-- Projects will be dynamically loaded here -->
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Corporate+Office" alt="Corporate Office" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Corporate Office</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Gurgaon</span></p><div class="mt-2 text-sm text-text-dark flex-grow">A vibrant and productive workspace for a leading tech company.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Boutique+Hotel" alt="Boutique Hotel" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Boutique Hotel Lobby</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Goa</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Luxurious and welcoming interior design for a hotel entrance.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Fine-Dining+Restaurant" alt="Fine-Dining Restaurant" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Fine-Dining Restaurant</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Jaipur</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An ambient and sophisticated setting for a culinary experience.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Retail+Showroom" alt="Retail Showroom" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Retail Showroom</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Mumbai</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Modern and engaging showroom design for a luxury brand.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=Hospital+Interior" alt="Hospital Interior" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">Hospital Interior</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Kota</span></p><div class="mt-2 text-sm text-text-dark flex-grow">Clean, calming, and functional design for a multi-specialty hospital.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
+                            <div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col"><div class="relative"><img src="https://placehold.co/600x400/14b8a6/FFF?text=University+Library" alt="University Library" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div><div class="p-6 flex flex-col flex-grow"><h3 class="text-xl font-bold font-display">University Library</h3><p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>Bhopal</span></p><div class="mt-2 text-sm text-text-dark flex-grow">An inspiring and collaborative space for learning and research.</div><button onclick="return false;" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button></div></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Our Clientele Page Section -->
         <section id="clientele" class="page-section py-20 bg-alt">
-             <!-- All text and logo images are editable -->
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll animate-fade-in-up"><h1 class="text-5xl font-bold font-display" data-key="clientele-title">Our Esteemed Clientele</h1><p class="text-text-muted mt-2 max-w-3xl mx-auto" data-key="clientele-subtitle">We are proud to have collaborated with industry leaders and prestigious organizations.</p></div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up"><img data-key-img="client-logo-1" src="" alt="Client Logo 1" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="50"><img data-key-img="client-logo-2" src="" alt="Client Logo 2" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="100"><img data-key-img="client-logo-3" src="" alt="Client Logo 3" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="150"><img data-key-img="client-logo-4" src="" alt="Client Logo 4" class="mx-auto max-h-12 object-contain"></div>
+                    <div class="p-4 bg-white rounded-lg shadow-md flex items-center justify-center h-24 animate-on-scroll animate-fade-in-up" data-delay="200"><img data-key-img="client-logo-5" src="" alt="Client Logo 5" class="mx-auto max-h-12 object-contain"></div>
+                </div>
+            </div>
         </section>
         
-        <!-- CSR Page Section -->
         <section id="csr" class="page-section py-20 bg-alt">
-             <!-- All text content and the image gallery are editable -->
+            <div class="container mx-auto px-6">
+                 <div class="text-center bg-white p-8 md:p-12 rounded-lg shadow-lg">
+                    <h2 class="text-4xl font-bold font-display mb-4 animate-on-scroll animate-fade-in-up" data-key="csr-title">Corporate Social Responsibility</h2>
+                    <p class="text-xl text-gold font-semibold mb-8 animate-on-scroll animate-fade-in-up" data-key="csr-subtitle">Under the Mangilal Suthar Charitable Trust</p>
+                    <p class="text-text-muted mt-2 max-w-3xl mx-auto mb-12 animate-on-scroll animate-fade-in-up" data-key="csr-p">We are committed to building a better society, not just better buildings. Our initiatives focus on education, environmental sustainability, and community welfare.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="0"><i class="fas fa-school text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-1-title">Student Hostels</h3><p class="text-text-muted mt-2" data-key="csr-item-1-text">Providing free, safe, and supportive hostel facilities for underprivileged students.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="200"><i class="fas fa-heart text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-2-title">Gausala (Cow Shelter)</h3><p class="text-text-muted mt-2" data-key="csr-item-2-text">Caring for cows by providing shelter, food, and medical care, promoting animal welfare.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="400"><i class="fas fa-graduation-cap text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-3-title">Educational Scholarships</h3><p class="text-text-muted mt-2" data-key="csr-item-3-text">Offering scholarships to bright and deserving children from low-income families.</p></div>
+                        <div class="animate-on-scroll animate-fade-in-up" data-delay="600"><i class="fas fa-tree text-4xl text-teal"></i><h3 class="text-xl font-bold font-display mt-4" data-key="csr-item-4-title">Tree Planting Drive</h3><p class="text-text-muted mt-2" data-key="csr-item-4-text">A commitment to planting over 10,000 trees to foster a greener, healthier future.</p></div>
+                    </div>
+                    <h3 class="text-3xl font-bold font-display mt-16 mb-8 animate-on-scroll animate-fade-in-up" data-key="csr-gallery-title">Glimpses of Our Journey</h3>
+                    <div class="admin-gallery-controls justify-center mb-4"><button onclick="openUploadModal('csr')" class="bg-teal text-white font-bold py-2 px-6 rounded-md"><i class="fas fa-plus mr-2"></i>Add CSR Image</button></div>
+                    <div id="csr-slider-wrapper" class="relative">
+                        <div class="csr-slide" style="display: block;"><div class="relative"><img src="https://images.pexels.com/photos/2678315/pexels-photo-2678315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CSR - Education Initiative"></div></div>
+                        <div class="csr-slide" style="display: none;"><div class="relative"><img src="https://images.pexels.com/photos/162813/cow-head-horns-nature-162813.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="CSR - Gausala"></div></div>
+                        <a class="prev" onclick="plusSlides(-1)"><i class="fas fa-chevron-left"></i></a>
+                        <a class="next" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Contact Page Section -->
         <section id="contact" class="page-section py-20 bg-alt">
-             <!-- All contact info is editable -->
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg animate-on-scroll animate-slide-in-left">
+                    <h2 class="text-3xl font-bold font-display mb-6" data-key="contact-form-title">Send Us a Message</h2>
+                    <form id="contact-form">
+                        <div class="mb-4"><label for="name" class="block font-semibold mb-2">Full Name</label><input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-md" required></div>
+                        <div class="mb-4"><label for="email" class="block font-semibold mb-2">Email Address</label><input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-md" required></div>
+                        <div class="mb-4"><label for="phone" class="block font-semibold mb-2">Phone Number</label><input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border rounded-md"></div>
+                        <div class="mb-4"><label for="message" class="block font-semibold mb-2">Message</label><textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-md" required></textarea></div>
+                        <button type="submit" class="w-full bg-primary-dark text-white font-bold py-3 px-4 rounded-md hover:bg-gold">Submit Inquiry</button>
+                    </form>
+                    <div id="form-success-message" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-md">Thank you! Your message has been prepared for WhatsApp.</div>
+                </div>
+                <div class="space-y-8 animate-on-scroll animate-slide-in-right">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold font-display mb-4" data-key="contact-info-title">Contact Information</h3>
+                        <a href="https://share.google/ZOhZZVzzGTf8Wf7Fb" target="_blank" class="block p-4 mb-4 bg-gray-100 rounded-lg"><p class="font-semibold">Our Location</p><p class="text-text-muted flex items-start"><i class="fas fa-map-marker-alt text-lg text-gold mt-1 mr-3"></i><span data-key="contact-location"></span></p></a>
+                        <ul class="space-y-4 text-text-muted"><li class="flex items-center"><i class="fas fa-envelope text-xl text-gold mr-4"></i><a href="mailto:jaishreegroup1980@gmail.com" class="hover:text-gold" data-key="contact-email"></a></li><li class="flex items-center"><i class="fab fa-whatsapp text-xl text-gold mr-4"></i><a href="https://wa.me/919116127798" target="_blank" class="hover:text-gold" data-key="contact-phone"></a></li></ul>
+                    </div>
+                    <div class="rounded-lg shadow-lg overflow-hidden h-80"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.006129994628!2d75.74810567520708!3d26.90327317665187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db4989635657b%3A0x8b320872c0506213!2sNemi%20Nagar%2c%20Vaishali%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302021!5e0!3m2!1sen!2sin!4v1726776953259!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-primary-dark text-white">
-         <!-- All footer content is editable -->
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div><h3 class="text-xl font-bold font-display">Jai Shree Group</h3><p class="mt-4 text-gray-400" data-key="footer-bio"></p></div>
+                <div><h3 class="text-lg font-semibold">Quick Links</h3><ul class="mt-4 space-y-2"><li><a href="#" onclick="showPage('about')" class="hover:text-gold">About Us</a></li><li><a href="#" onclick="showPage('services')" class="hover:text-gold">Services</a></li><li><a href="#" onclick="showPage('projects')" class="hover:text-gold">Projects</a></li><li><a href="#" onclick="showPage('clientele')" class="hover:text-gold">Our Clientele</a></li><li><a href="#" onclick="showPage('csr')" class="hover:text-gold">CSR</a></li><li><a href="#" onclick="showPage('contact')" class="hover:text-gold">Contact Us</a></li></ul></div>
+                <div><h3 class="text-lg font-semibold">Contact Info</h3><ul class="mt-4 space-y-3 text-gray-400"><li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3"></i><span data-key="footer-contact-address"></span></li><li class="flex items-center"><i class="fas fa-envelope mr-3"></i><a href="mailto:jaishreegroup1980@gmail.com" class="hover:text-gold">jaishreegroup1980@gmail.com</a></li><li class="flex items-center"><i class="fab fa-whatsapp mr-3"></i><a href="https://wa.me/919116127798" target="_blank" class="hover:text-gold">+91 91161 27798</a></li></ul></div>
+                <div><h3 class="text-lg font-semibold">Follow Us</h3><div class="flex space-x-4 mt-4"><a href="https://www.instagram.com/jai_shree_group" target="_blank" class="text-2xl hover:text-gold"><i class="fab fa-instagram"></i></a></div></div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500"><p id="footer-copyright">© 2024 Jai Shree Group. All Rights Reserved.</p></div>
+        </div>
     </footer>
 
-    <!-- Founder Details Modal -->
     <div id="director-modal" class="modal-overlay" onclick="closeModal('director-modal')">
-        <div class="modal-content" onclick="event.stopPropagation();"><i class="fas fa-times modal-close" onclick="closeModal('director-modal')"></i><h2 class="text-3xl font-display font-bold mb-4">Meet The Founder</h2><div class="flex flex-col sm:flex-row gap-6 items-center"><img data-key-img="founder-modal-img" src="https://placehold.co/144x144/c09a3e/FFF?text=Founder" alt="Founder Bajaranglal Suthar" class="rounded-full w-36 h-36 object-cover border-4 border-gold"><div><h3 class="text-2xl font-bold text-gold" data-key="founder-modal-name">Mr. Bajaranglal Suthar</h3><p class="text-text-muted mt-2" data-key="founder-modal-bio">The visionary founder of Jai Shree Group, whose principles of quality and integrity continue to be the cornerstone of our company.</p></div></div></div>
+        <div class="modal-content" onclick="event.stopPropagation();"><i class="fas fa-times modal-close" onclick="closeModal('director-modal')"></i><h2 class="text-3xl font-display font-bold mb-4">Meet The Founder</h2><div class="flex flex-col sm:flex-row gap-6 items-center"><img data-key-img="founder-modal-img" src="" alt="Founder Bajaranglal Suthar" class="rounded-full w-36 h-36 object-cover border-4 border-gold"><div><h3 class="text-2xl font-bold text-gold" data-key="founder-modal-name"></h3><p class="text-text-muted mt-2" data-key="founder-modal-bio"></p></div></div></div>
     </div>
     
-    <!-- Chat Assistant and Floating Buttons -->
-    <div id="chat-assistant">
-        <!-- Chat functionality is self-contained and not editable -->
+    <div id="ai-model-modal" class="modal-overlay" onclick="closeModal('ai-model-modal')">
+        <div class="modal-content" onclick="event.stopPropagation();"><div class="flex justify-between items-center mb-4"><h2 id="ai-model-title" class="text-3xl font-display font-bold">Conceptual Model</h2><i class="fas fa-times modal-close" onclick="closeModal('ai-model-modal')"></i></div><div id="ai-model-output"><div class="spinner"></div></div><p class="text-center mt-4 text-sm text-text-muted">This is a design concept generated to visualize the project. The final output may vary.</p></div>
     </div>
+    
+     <div id="chat-assistant">
+        <div id="chat-box">
+            <div id="chat-header">
+                <h3 class="font-bold">Jai Shree Assistant</h3>
+                <button id="close-chat-box" class="text-xl">×</button>
+            </div>
+            <div id="chat-body"></div>
+            <div id="chat-footer">
+                <input type="text" id="chat-input" placeholder="Ask a question...">
+                <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div id="chat-assistant-icon"><i class="fas fa-headset"></i></div>
+    </div>
+
     <a href="https://wa.me/919116127798" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="#" id="scroll-to-top"><i class="fas fa-arrow-up"></i></a>
 
-    <!-- ===================== JAVASCRIPT LOGIC ===================== -->
     <script>
         // --- CONFIGURATION ---
-        // Your Supabase credentials have been inserted here.
         const SUPABASE_URL = 'https://ilutmmmgxtosisprabwn.supabase.co'; 
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsdXRtbW1neHRvc2lzcHJhYnduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc2MTIwODUsImV4cCI6MjA3MzE4ODA4NX0.38KIvxCRgC-BfPe7hyhOZTKnhWKJcBMofZ2vlqXxWMU';
         
@@ -481,28 +613,25 @@
         let slideIndex = 1;
         let projectDetailSlideIndex = 1;
         let initializeAnimationsForPage = () => {};
-        let _uploadContext = {}; // Stores context for file uploads (e.g., which image or gallery is being edited)
+        let _uploadContext = {}; // Stores context for file uploads
         
         // -----------------------------------------------------------------------------
         // --- CORE UI & NAVIGATION ---
         // -----------------------------------------------------------------------------
         
-        // Function to switch between different pages of the single-page application
         function showPage(pageId, subId) {
             if(event) event.preventDefault();
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             const newPage = document.getElementById(pageId);
             if (newPage) newPage.classList.add('active');
             
-            // Update the active link in the navigation bar
             document.querySelectorAll('.nav-link').forEach(l => {
                 l.classList.remove('active');
                 if (l.getAttribute('onclick')?.includes(`'${pageId}'`)) l.classList.add('active');
             });
             
-            window.scrollTo(0, 0); // Scroll to top on page change
+            window.scrollTo(0, 0);
             
-            // If a sub-ID is provided (e.g., for scrolling to a specific project section), scroll to it
             if (subId) {
                 setTimeout(() => {
                     const el = document.getElementById(subId);
@@ -514,14 +643,13 @@
                     }
                 }, 100);
             }
-            initializeAnimationsForPage(pageId); // Re-trigger animations for the new page
+            initializeAnimationsForPage(pageId);
         };
 
         function closeMenu() { document.getElementById('mobile-menu')?.classList.add('hidden'); }
         function openModal(modalId) { document.getElementById(modalId)?.classList.add('active'); }
         function closeModal(modalId) { document.getElementById(modalId)?.classList.remove('active'); }
 
-        // Function to handle tab switching within the Projects section
         function showTab(event, tabId) {
             const container = event.currentTarget.closest('.portfolio-category');
             container.querySelectorAll('.portfolio-tab').forEach(t => t.classList.remove('active'));
@@ -529,6 +657,7 @@
             container.querySelectorAll('.portfolio-tab-content').forEach(c => c.classList.remove('active'));
             container.querySelector(`#${tabId}`).classList.add('active');
         }
+
         function showInteriorTab(event, tabId) {
              const container = event.currentTarget.closest('.portfolio-category');
             container.querySelectorAll('.interior-tab').forEach(t => t.classList.remove('active'));
@@ -537,7 +666,6 @@
             container.querySelector(`#${tabId}`).classList.add('active');
         }
 
-        // Functions for the CSR image slider
         function plusSlides(n) { showSlides(slideIndex += n); }
         function showSlides(n) {
             let slides = document.querySelectorAll("#csr-slider-wrapper .csr-slide");
@@ -552,39 +680,51 @@
         // --- INITIALIZATION ---
         // -----------------------------------------------------------------------------
         
-        // This function runs as soon as the page is loaded
         document.addEventListener("DOMContentLoaded", async () => {
-            // Check if Supabase credentials are provided
             if (SUPABASE_URL && SUPABASE_ANON_KEY) {
                 dbClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 
-                // Fetch all dynamic data from Supabase
+                // Fetch dynamic data only if galleries are empty
+                if (!document.getElementById('colonies-gallery').hasChildNodes()) {
+                     await fetchAndRenderGalleries();
+                } else {
+                    // if content is static, still run animations
+                     document.querySelectorAll('#projects .animate-on-scroll').forEach(el => {
+                        const observer = new IntersectionObserver((entries) => {
+                            if(entries[0].isIntersecting) {
+                                el.classList.add('is-visible');
+                                observer.unobserve(el);
+                            }
+                        }, {threshold: 0.1});
+                        observer.observe(el);
+                     });
+                }
+                
                 await Promise.all([
                     fetchAndDisplayContent(),
-                    fetchAndRenderGalleries(),
                     fetchAndBuildHeroSlideshow()
                 ]);
                 
-                // Check if an admin is already logged in from a previous session
                 const { data: { session } } = await dbClient.auth.getSession();
-                if (session) {
-                    enableAdminMode();
-                }
+                if (session) enableAdminMode();
 
             } else {
-                console.warn("Supabase credentials not set. The site will run with static placeholder content.");
+                console.warn("Supabase credentials not set. Site will be static.");
             }
             
+            // For static CSR slider
+            if(document.querySelectorAll("#csr-slider-wrapper .csr-slide").length > 0) {
+                showSlides(1);
+            }
+
             setupEventListeners();
             initializePageAnimations();
-            showPage('home'); // Show the home page by default
+            showPage('home');
         });
 
-        // Sets up all the interactive event listeners for the site
         function setupEventListeners() {
             document.getElementById('mobile-menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
             
-            // Contact form submission
             document.getElementById('contact-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const form = e.target;
@@ -595,7 +735,6 @@
                 form.reset();
             });
 
-            // Scroll-to-top button visibility
             const scrollToTopBtn = document.getElementById('scroll-to-top');
             window.addEventListener('scroll', () => scrollToTopBtn.classList.toggle('visible', window.pageYOffset > 300));
             scrollToTopBtn.addEventListener('click', (e) => { 
@@ -608,80 +747,86 @@
         }
         
         // -----------------------------------------------------------------------------
-        // --- DATA FETCHING & RENDERING (Connecting to Supabase) ---
+        // --- DATA FETCHING & RENDERING ---
         // -----------------------------------------------------------------------------
         
-        // Fetches all simple text and single image content from the 'content' table in Supabase
         async function fetchAndDisplayContent() {
             if (!dbClient) return;
             const { data, error } = await dbClient.from('content').select('*');
             if (error) return console.error('Error fetching content:', error);
             
             data.forEach(item => {
-                // Find elements on the page with matching data-key or data-key-img attributes
                 const elements = document.querySelectorAll(`[data-key="${item.id}"], [data-key-img="${item.id}"]`);
                 elements.forEach(el => {
                     if (item.type === 'text') {
-                        el.innerHTML = item.content; // Set text content
+                        el.innerHTML = item.content;
                     } else if (item.type === 'image') {
-                        // Set image source or background image
-                        if (el.tagName === 'IMG') el.src = item.content;
-                        else el.style.backgroundImage = `url('${item.content}')`;
+                        if (el.tagName === 'IMG' && !el.src) { // Only update if src is empty
+                            el.src = item.content;
+                        } else if (el.tagName !== 'IMG') {
+                            const currentStyle = el.style.backgroundImage || '';
+                            // Only update if no bg image is set
+                            if (!currentStyle.includes('url(')) {
+                                el.style.backgroundImage = `url('${item.content}')`;
+                            }
+                        }
                     }
                 });
             });
         }
 
-        // Fetches all project and CSR gallery items from the 'gallery_images' table
         async function fetchAndRenderGalleries() {
             if (!dbClient) return;
             const { data, error } = await dbClient.from('gallery_images').select('*').order('id');
             if (error) return console.error("Error fetching galleries:", error);
 
-            // Get references to all gallery containers
             const galleries = {
                 'project-col': document.getElementById('colonies-gallery'), 'project-res': document.getElementById('residential-gallery'),
                 'project-com': document.getElementById('commercial-gallery'), 'project-int-res': document.getElementById('residential-int-gallery'),
                 'project-int-com': document.getElementById('commercial-int-gallery'), 'csr': document.getElementById('csr-slider-wrapper')
             };
 
-            // Clear any static content from the galleries
             Object.values(galleries).forEach(el => el && (el.innerHTML = ''));
             
-            // Populate each gallery with items from the database
             data.forEach(item => {
                 if (galleries[item.gallery_key]) {
-                    const elementHTML = item.gallery_key === 'csr' ? createCsrSlide(item) : createProjectCard(item);
-                    galleries[item.gallery_key].insertAdjacentHTML('beforeend', elementHTML);
+                    const element = item.gallery_key === 'csr' ? createCsrSlide(item) : createProjectCard(item);
+                    galleries[item.gallery_key].insertAdjacentHTML('beforeend', element);
                 }
             });
 
-             // Initialize the CSR slider if it has images
              if (galleries.csr && galleries.csr.children.length > 0) {
                 galleries.csr.insertAdjacentHTML('beforeend', `<a class="prev" onclick="plusSlides(-1)"><i class="fas fa-chevron-left"></i></a><a class="next" onclick="plusSlides(1)"><i class="fas fa-chevron-right"></i></a>`);
                 showSlides(1);
             }
              
+             document.querySelectorAll('#projects .animate-on-scroll').forEach(el => {
+                const observer = new IntersectionObserver((entries) => {
+                    if(entries[0].isIntersecting) {
+                        el.classList.add('is-visible');
+                        observer.unobserve(el);
+                    }
+                }, {threshold: 0.1});
+                observer.observe(el);
+             });
              if (adminLoggedIn) attachAdminEventListeners();
         }
-        
-        // Creates the HTML for a single project card
+
         function createProjectCard(item) {
-             return `<div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col" data-id="${item.id}">
+             return `<div class="gallery-item bg-white rounded-lg shadow-lg overflow-hidden group animate-on-scroll animate-fade-in-up flex flex-col" data-id="${item.id}">
                     <div class="relative"><img src="${item.image_url}" alt="${item.title}" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"></div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold font-display">${item.title}</h3>
                         <p class="text-text-muted"><i class="fas fa-map-marker-alt text-gold mr-2"></i><span>${item.location}</span></p>
                         <div class="mt-2 text-sm text-text-dark flex-grow">${item.description}</div>
                         <button onclick="openProjectDetails(${item.id})" class="mt-4 w-full bg-primary-dark text-white font-bold py-2 px-4 rounded-md hover:bg-gold transition-colors text-sm">View Project</button>
-                        <!-- Admin controls are hidden by default -->
                         <div class="admin-project-controls justify-between mt-4">
                             <button onclick="editGalleryItem(${item.id})" class="text-sm text-blue-600 hover:underline">Edit Text</button>
                             <button onclick="openProjectImagesManager(${item.id})" class="text-sm text-green-600 hover:underline">Manage Images</button>
                             <button onclick="deleteGalleryItem(${item.id})" class="text-sm text-red-600 hover:underline">Delete</button>
                         </div></div></div>`;
         }
-        // Creates the HTML for a single CSR slide
+
         function createCsrSlide(item) {
              return `<div class="csr-slide gallery-item" data-id="${item.id}"><div class="relative"><img src="${item.image_url}" alt="CSR Image ${item.id}"></div>
                     <div class="admin-gallery-controls justify-center absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-50 p-2 rounded-md gap-4">
@@ -689,7 +834,6 @@
                         <button onclick="deleteGalleryItem(${item.id})" class="text-sm text-red-400 hover:underline">Delete</button></div></div>`;
         }
 
-        // Fetches active images for the hero slideshow from the 'hero_images' table
         async function fetchAndBuildHeroSlideshow() {
             if(!dbClient) return;
             const slideshow = document.getElementById('hero-slideshow');
@@ -698,7 +842,10 @@
             const { data, error } = await dbClient.from('hero_images').select('image_url').eq('is_active', true);
             
             if (error || !data || data.length === 0) {
-                 slideshow.innerHTML = `<div class="hero-slide active" style="background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://placehold.co/1920x1080/1a202c/FFF?text=Welcome');"></div>`;
+                slideshow.innerHTML = `
+                    <div class="hero-slide active" style="background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                    <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+                `;
             } else {
                 data.forEach((img, index) => {
                     const slide = document.createElement('div');
@@ -707,15 +854,14 @@
                     slideshow.appendChild(slide);
                 });
             }
-            initializeAnimationsForPage('home'); // Re-initialize hero animation
+            initializeAnimationsForPage('home');
         }
 
         // -----------------------------------------------------------------------------
-        // --- ADMIN MODE LOGIC ---
+        // --- ADMIN MODE ---
         // -----------------------------------------------------------------------------
         
         function setupAdminFeatures() {
-            // Secret trigger: click the footer copyright 7 times to open the login modal
             let clickCount = 0;
             document.getElementById('footer-copyright').addEventListener('click', () => {
                 clickCount++;
@@ -723,12 +869,10 @@
                 setTimeout(() => clickCount = 0, 2000);
             });
 
-            // Handle login, save, and logout
             document.getElementById('admin-login-form').addEventListener('submit', handleAdminLogin);
             document.getElementById('save-changes-btn').addEventListener('click', saveAllChanges);
             document.getElementById('logout-btn').addEventListener('click', handleAdminLogout);
             
-            // Setup drag-and-drop for image uploads
             const dropZone = document.getElementById('drop-zone');
             dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
             dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
@@ -743,7 +887,6 @@
             document.getElementById('image-uploader').addEventListener('change', handleImageUpload);
         }
 
-        // Authenticates the admin with Supabase
         async function handleAdminLogin(e) {
             e.preventDefault();
             const email = document.getElementById('admin-email').value;
@@ -760,10 +903,9 @@
 
         async function handleAdminLogout() { 
             await dbClient.auth.signOut(); 
-            window.location.reload(); // Reload the page to exit admin mode
+            window.location.reload(); 
         }
 
-        // Activates the editing UI across the entire page
         function enableAdminMode() {
             adminLoggedIn = true;
             document.getElementById('admin-panel').classList.remove('hidden');
@@ -771,7 +913,6 @@
             attachAdminEventListeners();
         }
 
-        // Makes content editable and adds click listeners for images
         function attachAdminEventListeners() {
             document.querySelectorAll('[data-key]').forEach(el => el.contentEditable = 'true');
             document.querySelectorAll('[data-key-img]').forEach(el => {
@@ -788,13 +929,22 @@
         // --- ADMIN IMAGE & GALLERY MANAGEMENT ---
 
         function openUploadModal(contextKey, projectId = null) {
-            _uploadContext = { type: 'addGallery', gallery_key: contextKey };
-            if (contextKey === 'addHero') { _uploadContext = { type: 'addHero' }; } 
-            else if (contextKey === 'addProjectImage') { _uploadContext = { type: 'addProjectImage', projectId: projectId }; }
-            
-            document.getElementById('image-uploader').multiple = (contextKey !== 'addHero');
+            if (contextKey === 'addHero') {
+                _uploadContext = { type: 'addHero' };
+                document.getElementById('image-uploader').multiple = false;
+            } else if (contextKey === 'addProjectImage') {
+                _uploadContext = { type: 'addProjectImage', projectId: projectId };
+                document.getElementById('image-uploader').multiple = true;
+            } else if (contextKey === 'csr') {
+                 _uploadContext = { type: 'addGallery', gallery_key: contextKey };
+                document.getElementById('image-uploader').multiple = true;
+            } else {
+                _uploadContext = { type: 'addGallery', gallery_key: contextKey };
+                document.getElementById('image-uploader').multiple = true;
+            }
             openModal('upload-modal');
         }
+
 
         function handleSingleImageEdit(e) {
             if (!adminLoggedIn || e.target.classList.contains('remove-cover-btn')) return;
@@ -811,7 +961,6 @@
             editGalleryItem(Number(galleryItem.dataset.id), galleryItem.classList.contains('csr-slide'));
         }
         
-        // Gathers all edited content on the page and saves it to the 'content' table
         async function saveAllChanges() { 
             if (!adminLoggedIn || !dbClient) return;
             const btn = document.getElementById('save-changes-btn');
@@ -819,16 +968,19 @@
             btn.querySelector('.btn-spinner').classList.remove('hidden');
 
             const updates = [];
-            // Collect all text changes
             document.querySelectorAll('[data-key]').forEach(el => {
                 updates.push({ id: el.dataset.key, content: el.innerHTML, type: 'text' });
             });
-            // Collect all single image changes
             document.querySelectorAll('[data-key-img]').forEach(el => {
                 let url = '';
-                if(el.tagName === 'IMG') url = el.src;
-                else if (el.style.backgroundImage) url = el.style.backgroundImage.slice(5, -2);
-                if (url) updates.push({ id: el.dataset.keyImg, content: url, type: 'image' });
+                if(el.tagName === 'IMG') {
+                    url = el.src;
+                } else if (el.style.backgroundImage) {
+                    url = el.style.backgroundImage.slice(5, -2).replace(/"/g, ""); // Clean URL string
+                }
+                if (url) {
+                    updates.push({ id: el.dataset.keyImg, content: url, type: 'image' });
+                }
             });
 
             const { error } = await dbClient.from('content').upsert(updates, { onConflict: 'id' });
@@ -838,7 +990,6 @@
             alert(error ? `Error: ${error.message}` : 'Content saved successfully!');
         }
 
-        // Allows editing the text details of a gallery item or changing its image
         async function editGalleryItem(id, isCsr = false) {
             _uploadContext = { type: 'editGallery', id: id };
             document.getElementById('image-uploader').multiple = false;
@@ -851,19 +1002,20 @@
             const newLocation = prompt("Enter new location:", data.location);
             const newDesc = prompt("Enter new description:", data.description);
 
-            await dbClient.from('gallery_images').update({ 
-                title: newTitle || data.title, 
-                location: newLocation || data.location, 
+            const updates = {
+                title: newTitle || data.title,
+                location: newLocation || data.location,
                 description: newDesc || data.description
-            }).eq('id', id);
+            };
+            
+            await dbClient.from('gallery_images').update(updates).eq('id', id);
             await fetchAndRenderGalleries(); 
            
-            if (confirm("Text updated. Would you like to update the main cover image?")) {
+            if (confirm("Text updated. Would you like to update the main cover image for this item?")) {
                 openModal('upload-modal');
             }
         }
 
-        // Deletes a gallery item and its associated images
         async function deleteGalleryItem(id) {
             if (!confirm("Are you sure you want to delete this item and all its images?")) return;
             await dbClient.from('project_additional_images').delete().eq('project_id', id);
@@ -871,74 +1023,80 @@
             await fetchAndRenderGalleries();
         }
         
-        // Handles the entire image upload process, from file selection to Supabase Storage
         async function handleImageUpload(e) {
             if (!adminLoggedIn || !e.target.files || e.target.files.length === 0) return;
             const files = Array.from(e.target.files);
             closeModal('upload-modal');
+            
             alert(`Uploading ${files.length} image(s)... please wait.`);
 
             const uploadPromises = files.map(file => uploadFileAndGetUrl(file));
             const urls = await Promise.all(uploadPromises);
-            const successfulUrls = urls.filter(url => url);
+            const successfulUrls = urls.filter(url => url !== null);
 
-            if (successfulUrls.length === 0) return alert('Upload failed.');
+            if (successfulUrls.length < files.length) {
+                alert('Some files failed to upload.');
+            }
 
             const { type, element, gallery_key, id, projectId } = _uploadContext;
 
-            switch (type) {
-                case 'single':
-                    const url = successfulUrls[0];
-                    if (element.tagName === 'IMG') element.src = url;
-                    else element.style.backgroundImage = `url('${url}')`;
-                    break;
-                case 'addGallery':
-                    if (gallery_key === 'csr') {
+            if (type === 'single') {
+                if (element.tagName === 'IMG') element.src = successfulUrls[0];
+                else element.style.backgroundImage = `url('${successfulUrls[0]}')`;
+            } else if (type === 'addGallery') {
+                 if (gallery_key === 'csr') {
+                    if (successfulUrls.length > 0) {
                         const newCsrImages = successfulUrls.map(url => ({ gallery_key: 'csr', image_url: url }));
                         await dbClient.from('gallery_images').insert(newCsrImages);
-                    } else {
-                        const { data: newProject } = await dbClient.from('gallery_images').insert({ 
-                            gallery_key, 
-                            image_url: successfulUrls.shift(),
-                            title: prompt("Enter project title:"),
-                            location: prompt("Enter project location:"),
-                            description: prompt("Enter project description:")
-                        }).select().single();
-                        
-                        if (newProject && successfulUrls.length > 0) {
-                            const additionalImages = successfulUrls.map(url => ({ project_id: newProject.id, image_url: url }));
-                            await dbClient.from('project_additional_images').insert(additionalImages);
-                        }
                     }
-                    await fetchAndRenderGalleries();
-                    break;
-                case 'editGallery':
-                    await dbClient.from('gallery_images').update({ image_url: successfulUrls[0] }).eq('id', id);
-                    await fetchAndRenderGalleries();
-                    break;
-                case 'addHero':
-                    await dbClient.from('hero_images').insert({ image_url: successfulUrls[0] });
-                    await openHeroManager();
-                    break;
-                case 'addProjectImage':
-                    const newImages = successfulUrls.map(url => ({ project_id: projectId, image_url: url }));
-                    await dbClient.from('project_additional_images').insert(newImages);
-                    await openProjectImagesManager(projectId);
-                    break;
+                } else {
+                    const { data: newProject } = await dbClient.from('gallery_images').insert({ 
+                        gallery_key: gallery_key, 
+                        image_url: successfulUrls.shift(), // Use first image as cover
+                        title: prompt("Enter project title:"),
+                        location: prompt("Enter project location:"),
+                        description: prompt("Enter project description (HTML allowed):")
+                    }).select().single();
+                    
+                    if (newProject && successfulUrls.length > 0) {
+                        const additionalImages = successfulUrls.map(url => ({ project_id: newProject.id, image_url: url }));
+                        await dbClient.from('project_additional_images').insert(additionalImages);
+                    }
+                }
+                await fetchAndRenderGalleries();
+
+            } else if (type === 'editGallery') {
+                await dbClient.from('gallery_images').update({ image_url: successfulUrls[0] }).eq('id', id);
+                await fetchAndRenderGalleries();
+            } else if (type === 'addHero') {
+                await dbClient.from('hero_images').insert({ image_url: successfulUrls[0] });
+                await openHeroManager();
+            } else if (type === 'addProjectImage') {
+                const newImages = successfulUrls.map(url => ({ project_id: projectId, image_url: url }));
+                await dbClient.from('project_additional_images').insert(newImages);
+                await openProjectImagesManager(projectId);
             }
              _uploadContext = {};
              e.target.value = ''; // Reset file input
         }
 
         function removeCurrentImage(event) {
-            event.preventDefault(); event.stopPropagation();
-            if (!confirm('Are you sure you want to remove this image?')) return;
+            event.preventDefault();
+            event.stopPropagation();
+            if (!confirm('Are you sure you want to remove this image? This will be saved when you click "Save Changes".')) return;
+
             const parentEl = event.target.parentElement;
-            if (parentEl.tagName === 'IMG') parentEl.src = '';
-            else parentEl.style.backgroundImage = 'none';
+            const placeholderUrl = 'https://placehold.co/800x600/f1f5f9/cbd5e1?text=No+Image';
+
+            if (parentEl.tagName === 'IMG') {
+                parentEl.src = placeholderUrl;
+            } else {
+                const currentStyle = parentEl.style.backgroundImage || '';
+                const gradient = currentStyle.startsWith('linear-gradient') ? currentStyle.substring(0, currentStyle.indexOf('url(')) : '';
+                parentEl.style.backgroundImage = `${gradient}url('${placeholderUrl}')`;
+            }
         }
 
-        // Uploads a single file to Supabase storage and returns the public URL
         async function uploadFileAndGetUrl(file) {
             const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
             const { error } = await dbClient.storage.from('website-images').upload(fileName, file);
@@ -947,7 +1105,7 @@
             return data.publicUrl;
         }
         
-        // --- HERO SLIDESHOW MANAGER MODAL ---
+        // --- HERO SLIDESHOW MANAGER ---
         async function openHeroManager() {
             openModal('hero-manager-modal');
             const grid = document.getElementById('hero-manager-grid');
@@ -964,23 +1122,32 @@
         }
         async function deleteHeroImage(e, id) { 
             e.preventDefault(); 
-            if(!confirm('Are you sure?')) return; 
+            if(!confirm('Are you sure you want to permanently delete this image?')) return; 
             await dbClient.from('hero_images').delete().eq('id', id); 
             await openHeroManager(); 
         }
 
         // --- PROJECT DETAILS & IMAGE MANAGER ---
         async function openProjectDetails(projectId) {
-            if (!projectId) return;
-            const { data: project, error: pErr } = await dbClient.from('gallery_images').select('*').eq('id', projectId).single();
-            const { data: images, error: iErr } = await dbClient.from('project_additional_images').select('image_url').eq('project_id', projectId);
+            if (projectId === 0) return; // Prevent error on static placeholders
+            const { data: project, error: projectError } = await dbClient.from('gallery_images').select('*').eq('id', projectId).single();
+            const { data: images, error: imagesError } = await dbClient.from('project_additional_images').select('image_url').eq('project_id', projectId);
 
-            if (pErr) return;
+            if (projectError) return;
 
             const allImages = [project.image_url, ...(images?.map(i => i.image_url) || [])];
             
-            document.getElementById('project-details-slider').innerHTML = allImages.map((url, i) => `<div class="project-detail-slide" style="display:${i===0?'block':'none'};"><img src="${url}"></div>`).join('') + (allImages.length > 1 ? `<a class="prev" onclick="plusProjectSlides(-1)">❮</a><a class="next" onclick="plusProjectSlides(1)">❯</a>` : '');
-            document.getElementById('project-details-info').innerHTML = `<h2 class="text-3xl font-bold font-display">${project.title}</h2><p class="text-text-muted mt-2"><i class="fas fa-map-marker-alt text-gold mr-2"></i>${project.location}</p><div class="mt-4 text-text-dark">${project.description}</div>`;
+            const slider = document.getElementById('project-details-slider');
+            slider.innerHTML = allImages.map((url, index) => `
+                <div class="project-detail-slide" style="display: ${index === 0 ? 'block' : 'none'};">
+                    <img src="${url}" alt="${project.title} image ${index + 1}">
+                </div>
+            `).join('') + (allImages.length > 1 ? `<a class="prev" onclick="plusProjectSlides(-1)">❮</a><a class="next" onclick="plusProjectSlides(1)">❯</a>` : '');
+
+            const info = document.getElementById('project-details-info');
+            info.innerHTML = `<h2 class="text-3xl font-bold font-display">${project.title}</h2>
+                              <p class="text-text-muted mt-2"><i class="fas fa-map-marker-alt text-gold mr-2"></i>${project.location}</p>
+                              <div class="mt-4 text-text-dark">${project.description}</div>`;
 
             projectDetailSlideIndex = 1;
             openModal('project-details-modal');
@@ -996,33 +1163,175 @@
         }
 
         async function openProjectImagesManager(projectId) {
+            _uploadContext = { projectId: projectId };
             openModal('project-images-manager-modal');
-            document.getElementById('project-manager-add-image-btn').onclick = () => openUploadModal('addProjectImage', projectId);
+            
+            const addImageBtn = document.getElementById('project-manager-add-image-btn');
+            if(addImageBtn) addImageBtn.onclick = () => openUploadModal('addProjectImage', projectId);
 
             const grid = document.getElementById('project-images-grid');
-            const { data: project } = await dbClient.from('gallery_images').select('title').eq('id', projectId).single();
-            if (!project) return closeModal('project-images-manager-modal');
-
+            const { data: project, error: projectErr } = await dbClient.from('gallery_images').select('title').eq('id', projectId).single();
+            if (projectErr || !project) {
+                console.error("Project not found for image manager");
+                closeModal('project-images-manager-modal');
+                return;
+            }
             document.getElementById('project-images-title').textContent = `Manage Images for: ${project.title}`;
+
             grid.innerHTML = '<div class="spinner"></div>';
             const { data } = await dbClient.from('project_additional_images').select('*').eq('project_id', projectId);
-            grid.innerHTML = data ? data.map(img => `<div class="manager-item"><img src="${img.image_url}"><button class="delete-btn" onclick="deleteProjectImage(${img.id}, ${projectId})">×</button></div>`).join('') : 'No additional images.';
+            if (!data) { grid.innerHTML = 'Could not load images.'; return; }
+            grid.innerHTML = data.map(img => `<div class="manager-item"><img src="${img.image_url}"><button class="delete-btn" onclick="deleteProjectImage(${img.id}, ${projectId})">×</button></div>`).join('');
         }
         
         async function deleteProjectImage(imageId, projectId) {
-             if (!confirm('Are you sure?')) return;
+             if (!confirm('Are you sure you want to permanently delete this image?')) return;
              await dbClient.from('project_additional_images').delete().eq('id', imageId);
              await openProjectImagesManager(projectId);
         }
 
+        // --- CONCEPTUAL MODEL GENERATOR ---
+        async function generateAIModel(projectName) { /* ... (omitted for brevity) ... */ }
+
         // --- CHAT ASSISTANT ---
-        // This is a self-contained feature and does not interact with Supabase.
-        function setupChatAssistant() { /* ... (omitted for brevity, no changes needed) ... */ }
+        function setupChatAssistant() {
+            const chatIcon = document.getElementById('chat-assistant-icon'), chatBox = document.getElementById('chat-box'),
+                  closeChatBtn = document.getElementById('close-chat-box'), chatInput = document.getElementById('chat-input'),
+                  chatSend = document.getElementById('chat-send'), chatBody = document.getElementById('chat-body');
+            
+            chatIcon.addEventListener('click', () => chatBox.classList.add('active'));
+            closeChatBtn.addEventListener('click', () => chatBox.classList.remove('active'));
+            chatSend.addEventListener('click', handleSendMessage);
+            chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSendMessage(); });
+
+            function addMessage(message, type) {
+                const messageEl = document.createElement('div');
+                messageEl.className = `chat-message ${type}-message`;
+                messageEl.innerHTML = message;
+                chatBody.appendChild(messageEl);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function handleSendMessage() {
+                const message = chatInput.value.trim();
+                if(!message) return;
+                addMessage(message, 'user');
+                chatInput.value = '';
+                getBotResponse(message);
+            }
+            
+            function getBotResponse(userMessage) {
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'typing-indicator';
+                typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+                chatBody.appendChild(typingIndicator);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                setTimeout(() => {
+                    chatBody.removeChild(typingIndicator);
+                    addMessage(generateResponse(userMessage), 'bot');
+                }, 1200);
+            }
+            
+            const knowledgeBase = {
+                'greeting': { keywords: ['hello', 'hi', 'hey', 'namaste'], response: 'Hello! Welcome to Jai Shree Group. How can I help you today?' },
+                'about': { keywords: ['about', 'who are you', 'company', 'group', 'history', 'tell me about'], response: 'Jai Shree Group is a leading real estate and interiors company founded in 1980 by Mr. Bajaranglal Suthar. With over 40 years of experience, we have a strong reputation for quality and trust. You can learn more on our <a href="#" onclick="showPage(\'about\')">About Us</a> page.' },
+                'founder': { keywords: ['founder', 'owner', 'director', 'bajaranglal suthar'], response: 'Our respected founder is Mr. Bajaranglal Suthar. He established Jai Shree Group in 1980 with a vision for quality and integrity that continues to guide us.' },
+                'experience': { keywords: ['experience', 'how long', 'since when', 'established'], response: 'We have been building India\'s dreams since 1980, giving us over four decades of trusted experience in the industry.' },
+                'services': { keywords: ['services', 'what you do', 'offer', 'solutions'], response: 'We offer two main categories of services: <b>Real Estate Development</b> and <b>Turnkey Interior Solutions</b>. This includes everything from residential and commercial construction to complete interior design and execution. Check out our <a href="#" onclick="showPage(\'services\')">Services</a> page for full details.' },
+                'real_estate_services': { keywords: ['real estate', 'construction', 'plotting', 'colony', 'township'], response: 'Our real estate division handles large-scale projects, including residential & commercial construction, colony and township development, and infrastructure projects like road construction. You can see examples on the <a href="#" onclick="showPage(\'projects\')">Projects</a> page.' },
+                'interior_services': { keywords: ['interior', 'design', 'decoration', 'turnkey'], response: 'Our interiors division, Jai Shree Interiors, provides complete end-to-end solutions for residential spaces like flats and villas, as well as commercial properties such as offices, hospitals, and retail showrooms. See our <a href="#" onclick="showPage(\'services\')">Services</a> page for more.' },
+                'projects': { keywords: ['projects', 'work', 'portfolio', 'completed', 'past work'], response: 'We have a diverse portfolio with over 1155 successful projects. You can explore our landmark real estate and interior projects, including famous colonies like Mansarovar in Jaipur, on the <a href="#" onclick="showPage(\'projects\')">Projects</a> page.' },
+                'contact': { keywords: ['contact', 'address', 'phone', 'email', 'location', 'reach you'], response: 'You can call or WhatsApp us at +91 91161 27798, or email jaishreegroup1980@gmail.com. Our head office is at 41, Nemi Nagar Extension, Vaishali Nagar, Jaipur. For a map and form, visit the <a href="#" onclick="showPage(\'contact\')">Contact</a> page.'},
+                'csr': { keywords: ['csr', 'social', 'trust', 'charity', 'give back'], response: 'We are deeply committed to social responsibility through the Mangilal Suthar Charitable Trust. Our initiatives focus on supporting underprivileged students with hostels, caring for cows in our Gausala, and environmental work like tree planting. Learn more on our <a href="#" onclick="showPage(\'csr\')">CSR</a> page.'},
+                'quality': { keywords: ['quality', 'materials', 'guarantee', 'standards'], response: 'Uncompromising quality is a core value. We use the finest materials and have strict quality control processes to ensure our projects are durable, safe, and built to the highest standards.' },
+                'quote': { keywords: ['quote', 'estimate', 'price', 'cost', 'inquiry'], response: 'For a detailed quote or to discuss your project requirements, please fill out the form on our <a href="#" onclick="showPage(\'contact\')">Contact</a> page, and our team will get in touch with you promptly.'},
+                'thanks': { keywords: ['thank you', 'thanks', 'ok', 'great'], response: 'You\'re welcome! Is there anything else I can assist you with?'},
+                'bye': { keywords: ['bye', 'goodbye', 'that is all'], response: 'Thank you for your interest in Jai Shree Group. Have a great day!'}
+            };
+            function generateResponse(message) {
+                const lowerCaseMessage = message.toLowerCase();
+                for (const key in knowledgeBase) {
+                    if (knowledgeBase[key].keywords.some(keyword => lowerCaseMessage.includes(keyword))) {
+                        return knowledgeBase[key].response;
+                    }
+                }
+                return "I'm sorry, I could not find information on that. You can ask me about our services, projects, or contact details. For specific inquiries, I recommend visiting the <a href='#' onclick='showPage(\"contact\")'>Contact</a> page.";
+            }
+            addMessage("Hello! I'm the Jai Shree Group assistant. Ask me about our services, projects, or how to contact us.", "bot");
+        }
         
         // --- ANIMATIONS ---
-        // This handles all the "fade in on scroll" effects.
-        function initializePageAnimations() { /* ... (omitted for brevity, no changes needed) ... */ }
+        function initializePageAnimations() {
+            const animationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            let heroSlideshowInterval;
+
+            initializeAnimationsForPage = (pageId) => {
+                const page = document.getElementById(pageId);
+                if (!page) return;
+                
+                page.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    el.classList.remove('is-visible');
+                    animationObserver.observe(el);
+                });
+
+                if (pageId === 'home') {
+                    const heroTitle = page.querySelector('.hero-title');
+                    if (heroTitle && heroTitle.textContent) {
+                        heroTitle.innerHTML = heroTitle.textContent.trim().split('').map(c => `<span>${c === ' ' ? ' ' : c}</span>`).join('');
+                        setTimeout(() => {
+                            heroTitle.classList.add('is-visible');
+                            heroTitle.querySelectorAll('span').forEach((s, i) => s.style.transitionDelay = `${i * 30}ms`);
+                        }, 300);
+                    }
+                    
+                    const heroSlides = page.querySelectorAll("#hero-slideshow .hero-slide");
+                    if (heroSlides.length > 0) {
+                        let current = 0;
+                        clearInterval(heroSlideshowInterval);
+                        heroSlideshowInterval = setInterval(() => {
+                            heroSlides[current]?.classList.remove('active');
+                            current = (current + 1) % heroSlides.length;
+                            heroSlides[current]?.classList.add('active');
+                        }, 5000);
+                    }
+
+                    const counters = page.querySelectorAll('#counter-section [data-target]');
+                    const counterObserver = new IntersectionObserver((entries, obs) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const counter = entry.target;
+                                const target = +counter.getAttribute('data-target');
+                                let count = 0;
+                                const inc = Math.ceil(target / 100);
+                                const update = () => {
+                                    if (count < target) {
+                                        count = Math.min(count + inc, target);
+                                        counter.innerText = count.toLocaleString();
+                                        setTimeout(update, 20);
+                                    } else {
+                                        counter.innerText = target.toLocaleString();
+                                    }
+                                };
+                                update();
+                                obs.unobserve(counter);
+                            }
+                        });
+                    }, { threshold: 0.8 });
+                    counters.forEach(c => counterObserver.observe(c));
+                }
+            }
+        }
     </script>
 </body>
 </html>
-
